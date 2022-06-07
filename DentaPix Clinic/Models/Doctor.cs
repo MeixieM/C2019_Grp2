@@ -10,5 +10,8 @@ namespace DentaPix_Clinic.Models
         public string FullName { get; set; }
         public string Career { get; set; }
         public string Interest { get; set; }
+
+        public List<Patient> Patients { get; set; }
+
     }
 }
