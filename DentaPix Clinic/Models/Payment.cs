@@ -8,7 +8,7 @@ namespace DentaPix_Clinic.Models
         [Key]
         public int PaymentId { get; set; }
 
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
 
         public PaymentStatus PaymentStatus { get; set; }
         public string Method { get; set; }

@@ -10,8 +10,7 @@ namespace DentaPix_Clinic.Models
         //public int DoctorId { get; set; }
         //public int PatientId { get; set; }
 
-        public DateOnly AppointmentDate { get; set; }
-        public TimeOnly AppointmentTime { get; set; }
+        public DateTime AppointmentDate { get; set; }
         public DayOfWeek AppointmentDay { get; set; }
         public string Description { get; set; }
         public string AppointmentStatus { get; set; }
