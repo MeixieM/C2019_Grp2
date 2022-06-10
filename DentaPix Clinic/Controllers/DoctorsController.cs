@@ -32,7 +32,17 @@ namespace DentaPix_Clinic.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Doctor obj)
         {
-            return View();
+            if (obj.FullName == obj.Career.ToString())
+            {
+                ModelState.AddModelError("FullName", "Career cannot exactly match the FullName");
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Doctors.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
         }
 
     }

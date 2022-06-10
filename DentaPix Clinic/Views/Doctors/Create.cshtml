@@ -7,24 +7,37 @@
 			<hr />
 		</div>
 		<div class="mb-3">
+			 @* <label asp-for="ProfilePictureURL"></label>
+			  <input asp-for"="ProfilePictureURL" type="file" id="formFile" class="form-control">*@
+			
 			<label asp-for="ProfilePictureURL"></label>
-			<label asp-for="ProfilePictureURL" class="form-control"></label>
+			<input asp-for="ProfilePictureURL" class="form-control"/>
+			<span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
+
 		</div>
 		<div class="mb-3">
 			<label asp-for="FullName"></label>
-			<label asp-for="FullName" class="form-control"></label>
+			<input asp-for="FullName" class="form-control"/>
+			<span asp-validation-for="FullName" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
 			<label asp-for="Career"></label> 
-			<label asp-for="Career" class="form-control"></label>
+			<input asp-for="Career" class="form-control"/>
+			<span asp-validation-for="Career" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
 			<label asp-for="Interest"></label>
-			<label asp-for="Interest" class="form-control"></label>
+			<input asp-for="Interest" class="form-control"/>
+			<span asp-validation-for="Interest" class="text-danger"></span>
+
 		</div>
 		<a asp-controller="Doctors" asp-action="Index" class="btn btn-secondary" style="width: 150px">Back</a>
 		<button type="submit" class="btn btn-primary" style="width: 150px">Add</button>
 
+
 	</div>
 
 </form>
+@section Scripts{
+	<partial name=_ValidationScriptsPartial>
+}

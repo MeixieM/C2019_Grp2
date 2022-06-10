@@ -8,6 +8,7 @@ namespace DentaPix_Clinic.Models
         public int DoctorId { get; set; }
         [Display(Name = "Profile Picture URL")]
         public string ProfilePictureURL { get; set; }
+        [Required]
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
 
