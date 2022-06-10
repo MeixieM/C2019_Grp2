@@ -26,5 +26,14 @@ namespace DentaPix_Clinic.Controllers
             return View();
         }
 
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Doctor obj)
+        {
+            return View();
+        }
+
     }
 }
