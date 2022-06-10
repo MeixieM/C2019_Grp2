@@ -1,0 +1,30 @@
+﻿@model Doctor
+
+<form method="post">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary">Add New Doctor</h2>
+			<hr />
+		</div>
+		<div class="mb-3">
+			<label asp-for="ProfilePictureURL"></label>
+			<label asp-for="ProfilePictureURL" class="form-control"></label>
+		</div>
+		<div class="mb-3">
+			<label asp-for="FullName"></label>
+			<label asp-for="FullName" class="form-control"></label>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Career"></label> 
+			<label asp-for="Career" class="form-control"></label>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Interest"></label>
+			<label asp-for="Interest" class="form-control"></label>
+		</div>
+		<a asp-controller="Doctors" asp-action="Index" class="btn btn-secondary" style="width: 150px">Back</a>
+		<button type="submit" class="btn btn-primary" style="width: 150px">Add</button>
+
+	</div>
+
+</form>

@@ -6,9 +6,15 @@ namespace DentaPix_Clinic.Models
     {
         [Key]
         public int DoctorId { get; set; }
+        [Display(Name = "Profile Picture URL")]
         public string ProfilePictureURL { get; set; }
+        [Display(Name = "Full Name")]
         public string FullName { get; set; }
+
+        [Display(Name = "Career")]
         public string Career { get; set; }
+
+        [Display(Name = "Interest")]
         public string Interest { get; set; }
 
         public List<Patient> Patients { get; set; }
