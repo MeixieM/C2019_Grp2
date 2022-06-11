@@ -1,9 +1,9 @@
 ﻿@model Doctor
 
-<form method="post" asp-action="Create">
+<form method="post" asp-action="Edit">
 	<div class="border p-3 mt-4">
 		<div class="row pb-2">
-			<h2 class="text-primary">Add New Doctor</h2>
+			<h2 class="text-primary">Edit Doctor</h2>
 			<hr />
 		</div>
 		<div class="mb-3">
@@ -31,14 +31,13 @@
 			<span asp-validation-for="Interest" class="text-danger"></span>
 
 		</div>
-		<a asp-controller="Doctors" asp-action="Index" class="btn btn-outline-secondary" style="width: 150px">Back</a>
-		<button type="submit" class="btn btn-outline-primary" style="width: 150px">Add</button>
+		<a asp-controller="Doctors" asp-action="Index" class="btn btn-secondary" style="width: 150px">Back</a>
+		<button type="submit" class="btn btn-primary" style="width: 150px">Update</button>
 
 
 	</div>
 
 </form>
-
-@*@section Scripts{
+@section Scripts{
 	<partial name=_ValidationScriptsPartial>
-}*@
+}

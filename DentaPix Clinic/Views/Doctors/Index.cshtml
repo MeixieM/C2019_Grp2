@@ -14,7 +14,7 @@
 			<h2 class="text-primary">Manage Doctors</h2>
 		</div>
 	<div class="col-6 text-end">
-		<a asp-controller="Doctors" asp-action="Create" class="btn btn-primary">
+		<a asp-controller="Doctors" asp-action="Create" class="btn btn-outline-primary">
 			<i class="bi bi-plus-circle"></i>&nbsp; Add New Doctor
 		</a>
 	</div>
@@ -39,7 +39,7 @@
 				{
 					<tr>
 						<td class="align-middle">
-							<img class="rounded-circle" src="@obj.ProfilePictureURL" alt="@obj.FullName" style="max-width: 150px">
+							<img class="rounded-circle" src="@obj.ProfilePictureURL" alt="@obj.FullName" style="width: 150px">
 						</td>
 						<td class="align-middle">
 							@Html.DisplayFor(modelItem => obj.FullName)
@@ -50,10 +50,14 @@
 						<td class="align-middle">
 							@Html.DisplayFor(modelItem => obj.Interest)
 						</td>
-						<td class="align-middle">
-							<a class="btn btn-outline-primary"><i class="bi bi-pencil-square"></i>Edit</a> |
-							<a class="btn btn-outline-info"><i class="bi bi-eye"></i>Details</a> |
-							<a class="btn btn-outline-danger"><i class="bi bi-trash"></i>Delete</a> 
+						<td class="align-middle" >
+							<div class="w-75" role="group">
+								<a asp-controller"="Doctors" asp-action="Edit" asp-route-id="@obj.DoctorId" class="btn btn-outline-primary mx-2"><i class="bi bi-pencil-square"></i>Edit</a> |
+								<a asp-controller"="Doctors" asp-action="Details" asp-route-id="@obj.DoctorId" class="btn btn-outline-info mx-2"><i class="bi bi-eye"></i>Details</a> |
+								<a asp-controller"="Doctors" asp-action="Delete" asp-route-id="@obj.DoctorId" class="btn btn-outline-danger mx-2"><i class="bi bi-trash"></i>Delete</a> |
+								@*<a class="btn btn-outline-info"><i class="bi bi-eye"></i>Details</a> |*@
+								@*<a class="btn btn-outline-danger"><i class="bi bi-trash"></i>Delete</a> *@
+							</div>
 						</td>
 					</tr>
 				}

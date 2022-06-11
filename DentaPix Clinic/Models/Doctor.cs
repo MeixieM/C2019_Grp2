@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace DentaPix_Clinic.Models
 {
@@ -6,16 +7,16 @@ namespace DentaPix_Clinic.Models
     {
         [Key]
         public int DoctorId { get; set; }
-        [Display(Name = "Profile Picture URL")]
+        [DisplayName("Profile Picture URL")]
         public string ProfilePictureURL { get; set; }
         [Required]
-        [Display(Name = "Full Name")]
+        [DisplayName("Full Name")]
         public string FullName { get; set; }
 
-        [Display(Name = "Career")]
+        [DisplayName("Career")]
         public string Career { get; set; }
 
-        [Display(Name = "Interest")]
+        [DisplayName("Interest")]
         public string Interest { get; set; }
 
         public List<Patient> Patients { get; set; }
