@@ -15,8 +15,8 @@ namespace DentaPix_Clinic.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Doctor> objDoctorsList = _db.Doctors;
-            return View(objDoctorsList);
+            IEnumerable<Doctor> objDoctorList = _db.Doctors;
+            return View(objDoctorList);
         }
 
 
@@ -43,6 +43,7 @@ namespace DentaPix_Clinic.Controllers
             }
             return View(obj);
         }
+
 
         //GET
         public IActionResult Edit(int? id)
@@ -79,39 +80,39 @@ namespace DentaPix_Clinic.Controllers
         }
 
 
-        //GET
-        public IActionResult Details(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var doctorFromDb = _db.Doctors.Find(id);
+        ////GET
+        //public IActionResult Details(int? id)
+        //{
+        //    if (id == null || id == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    var doctorFromDb = _db.Doctors.Find(id);
 
-            if (doctorFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(doctorFromDb);
-        }
+        //    if (doctorFromDb == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return View(doctorFromDb);
+        //}
 
-        //POST
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Details(Doctor obj)
-        {
-            if (obj.FullName == obj.Career.ToString())
-            {
-                ModelState.AddModelError("FullName", "Career cannot exactly match the FullName");
-            }
-            if (ModelState.IsValid)
-            {
-                _db.Doctors.Update(obj);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(obj);
-        }
+        ////POST
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Details(Doctor obj)
+        //{
+        //    if (obj.FullName == obj.Career.ToString())
+        //    {
+        //        ModelState.AddModelError("FullName", "Career cannot exactly match the FullName");
+        //    }
+        //    if (ModelState.IsValid)
+        //    {
+        //        _db.Doctors.Update(obj);
+        //        _db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(obj);
+        //}
 
 
         //GET
@@ -131,24 +132,18 @@ namespace DentaPix_Clinic.Controllers
         }
 
         //POST
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(Doctor obj)
+        public IActionResult DeletePOST(int? id)
         {
-            if (obj.FullName == obj.Career.ToString())
+            var obj = _db.Doctors.Find(id);
+            if (obj == null)
             {
-                ModelState.AddModelError("FullName", "Career cannot exactly match the FullName");
+                return NotFound();
             }
-            if (ModelState.IsValid)
-            {
-                _db.Doctors.Remove(obj);
-                _db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(obj);
+            _db.Doctors.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
-
-
-
     }
 }

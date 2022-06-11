@@ -49,7 +49,7 @@ namespace DentaPix_Clinic.Migrations
 
                     b.HasKey("AppointmendId");
 
-                    b.ToTable("Appointments");
+                    b.ToTable("Appointments", (string)null);
                 });
 
             modelBuilder.Entity("DentaPix_Clinic.Models.Doctor", b =>
@@ -78,7 +78,7 @@ namespace DentaPix_Clinic.Migrations
 
                     b.HasKey("DoctorId");
 
-                    b.ToTable("Doctors");
+                    b.ToTable("Doctors", (string)null);
                 });
 
             modelBuilder.Entity("DentaPix_Clinic.Models.Patient", b =>
@@ -148,7 +148,7 @@ namespace DentaPix_Clinic.Migrations
 
                     b.HasIndex("TreatmentId");
 
-                    b.ToTable("Patients");
+                    b.ToTable("Patients", (string)null);
                 });
 
             modelBuilder.Entity("DentaPix_Clinic.Models.Patient_Appointment", b =>
@@ -163,7 +163,7 @@ namespace DentaPix_Clinic.Migrations
 
                     b.HasIndex("AppointmentId");
 
-                    b.ToTable("Patients_Appointments");
+                    b.ToTable("Patients_Appointments", (string)null);
                 });
 
             modelBuilder.Entity("DentaPix_Clinic.Models.Payment", b =>
@@ -194,7 +194,7 @@ namespace DentaPix_Clinic.Migrations
 
                     b.HasKey("PaymentId");
 
-                    b.ToTable("Payments");
+                    b.ToTable("Payments", (string)null);
                 });
 
             modelBuilder.Entity("DentaPix_Clinic.Models.Treatment", b =>
@@ -219,7 +219,7 @@ namespace DentaPix_Clinic.Migrations
 
                     b.HasKey("TreatmentId");
 
-                    b.ToTable("Treatments");
+                    b.ToTable("Treatments", (string)null);
                 });
 
             modelBuilder.Entity("DentaPix_Clinic.Models.Patient", b =>

@@ -1,6 +1,6 @@
 ﻿@model Doctor
 
-<form method="post" asp-action="Create">
+<form method="post">
 	<div class="border p-3 mt-4">
 		<div class="row pb-2">
 			<h2 class="text-primary">Add New Doctor</h2>
@@ -39,6 +39,8 @@
 
 </form>
 
-@*@section Scripts{
-	<partial name=_ValidationScriptsPartial>
-}*@
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

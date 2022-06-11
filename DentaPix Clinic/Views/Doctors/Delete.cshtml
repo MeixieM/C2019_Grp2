@@ -1,9 +1,10 @@
 ﻿@model Doctor
 
 <form method="post" asp-action="Delete">
+	<input asp-for="DoctorId" hidden/>
 	<div class="border p-3 mt-4">
 		<div class="row pb-2">
-			<h2 class="text-primary">Edit Doctor</h2>
+			<h2 class="text-primary">Delete Doctor</h2>
 			<hr />
 		</div>
 		<div class="mb-3">
@@ -11,33 +12,35 @@
 			  <input asp-for"="ProfilePictureURL" type="file" id="formFile" class="form-control">*@
 			
 			<label asp-for="ProfilePictureURL"></label>
-			<input asp-for="ProfilePictureURL" class="form-control"/>
+			<input asp-for="ProfilePictureURL" disabled class="form-control"/>
 			<span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
 
 		</div>
 		<div class="mb-3">
 			<label asp-for="FullName"></label>
-			<input asp-for="FullName" class="form-control"/>
+			<input asp-for="FullName" disabled class="form-control"/>
 			<span asp-validation-for="FullName" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
 			<label asp-for="Career"></label> 
-			<input asp-for="Career" class="form-control"/>
+			<input asp-for="Career" disabled class="form-control"/>
 			<span asp-validation-for="Career" class="text-danger"></span>
 		</div>
 		<div class="mb-3">
 			<label asp-for="Interest"></label>
-			<input asp-for="Interest" class="form-control"/>
+			<input asp-for="Interest" disabled class="form-control"/>
 			<span asp-validation-for="Interest" class="text-danger"></span>
 
 		</div>
-		<a asp-controller="Doctors" asp-action="Index" class="btn btn-secondary" style="width: 150px">Back</a>
-		<button type="submit" class="btn btn-danger" style="width: 150px">Delete</button>
+		<a asp-controller="Doctors" asp-action="Index" class="btn btn-outline-secondary" style="width: 150px">Back</a>
+		<button type="submit" class="btn btn-outline-danger" style="width: 150px">Delete</button>
 
 
 	</div>
 
 </form>
-@section Scripts{
-	<partial name=_ValidationScriptsPartial>
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
 }
