@@ -18,7 +18,7 @@ namespace DentaPix_Clinic.Models
         [Display(Name = "Interest")]
         public string Interest { get; set; }
 
-        //public List<Patient> Patients { get; set; }
+        public List<Patient> Patients { get; set; }
 
     }
 }

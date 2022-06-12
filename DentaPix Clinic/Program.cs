@@ -1,4 +1,4 @@
-using DentaPix_Clinic.Data;
+using DentaPix_Clinic.DataAccess;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

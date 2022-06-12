@@ -1,4 +1,4 @@
-﻿using DentaPix_Clinic.Data;
+﻿using DentaPix_Clinic.DataAccess;
 using DentaPix_Clinic.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,6 +39,7 @@ namespace DentaPix_Clinic.Controllers
             {
                 _db.Doctors.Add(obj);
                 _db.SaveChanges();
+                TempData["success"] = "New doctor added successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -52,7 +53,8 @@ namespace DentaPix_Clinic.Controllers
             {
                 return NotFound();
             }
-            var doctorFromDb = _db.Doctors.Find(id);
+            //var doctorFromDb = _db.Doctors.Find(id);
+            var doctorFromDb = _db.Doctors.FirstOrDefault(u => u.FullName == "id");
 
             if (doctorFromDb == null)
             {
@@ -74,6 +76,7 @@ namespace DentaPix_Clinic.Controllers
             {
                 _db.Doctors.Update(obj);
                 _db.SaveChanges();
+                TempData["success"] = "Doctor updated successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -143,6 +146,7 @@ namespace DentaPix_Clinic.Controllers
             }
             _db.Doctors.Remove(obj);
             _db.SaveChanges();
+            TempData["success"] = "Doctor deleted successfully";
             return RedirectToAction("Index");
         }
     }

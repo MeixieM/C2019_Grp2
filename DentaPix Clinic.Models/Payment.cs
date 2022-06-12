@@ -1,5 +1,5 @@
-﻿using DentaPix_Clinic.Data.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+
 
 namespace DentaPix_Clinic.Models
 {
@@ -10,7 +10,7 @@ namespace DentaPix_Clinic.Models
 
         public DateTime Date { get; set; }
 
-        public PaymentStatus PaymentStatus { get; set; }
+        //public PaymentStatus PaymentStatus { get; set; }
         public string Method { get; set; }
         public string Notes { get; set; }
         public string Amount { get; set; }

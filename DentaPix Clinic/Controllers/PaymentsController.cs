@@ -1,4 +1,4 @@
-﻿using DentaPix_Clinic.Data;
+﻿using DentaPix_Clinic.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
