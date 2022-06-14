@@ -1,4 +1,4 @@
-﻿using DentaPix_Clinic.DataAccess;
+﻿using DentaPix_Clinic.DataAccess.Repository.IRepository;
 using DentaPix_Clinic.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,16 +6,16 @@ namespace DentaPix_Clinic.Controllers
 {
     public class DoctorsController : Controller
     {
-        private readonly AppDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public DoctorsController(AppDbContext db)
+        public DoctorsController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Doctor> objDoctorList = _db.Doctors;
+            IEnumerable<Doctor> objDoctorList = _unitOfWork.Doctor.GetAll();
             return View(objDoctorList);
         }
 
@@ -37,8 +37,8 @@ namespace DentaPix_Clinic.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Doctors.Add(obj);
-                _db.SaveChanges();
+                _unitOfWork.Doctor.Add(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "New doctor added successfully";
                 return RedirectToAction("Index");
             }
@@ -54,7 +54,7 @@ namespace DentaPix_Clinic.Controllers
                 return NotFound();
             }
             //var doctorFromDb = _db.Doctors.Find(id);
-            var doctorFromDb = _db.Doctors.FirstOrDefault(u => u.FullName == "id");
+            var doctorFromDb = _unitOfWork.Doctor.GetFirstOrDefault(u => u.DoctorId == id);
 
             if (doctorFromDb == null)
             {
@@ -74,8 +74,8 @@ namespace DentaPix_Clinic.Controllers
             }
             if (ModelState.IsValid)
             {
-                _db.Doctors.Update(obj);
-                _db.SaveChanges();
+                _unitOfWork.Doctor.Update(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Doctor updated successfully";
                 return RedirectToAction("Index");
             }
@@ -125,7 +125,8 @@ namespace DentaPix_Clinic.Controllers
             {
                 return NotFound();
             }
-            var doctorFromDb = _db.Doctors.Find(id);
+            var doctorFromDb = _unitOfWork.Doctor.GetFirstOrDefault(u => u.DoctorId == id);
+
 
             if (doctorFromDb == null)
             {
@@ -139,13 +140,14 @@ namespace DentaPix_Clinic.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _db.Doctors.Find(id);
+            var obj = _unitOfWork.Doctor.GetFirstOrDefault(u => u.DoctorId == id);
+
             if (obj == null)
             {
                 return NotFound();
             }
-            _db.Doctors.Remove(obj);
-            _db.SaveChanges();
+            _unitOfWork.Doctor.Remove(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Doctor deleted successfully";
             return RedirectToAction("Index");
         }
