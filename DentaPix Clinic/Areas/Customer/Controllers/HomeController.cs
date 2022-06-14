@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace DentaPix_Clinic.Controllers
+namespace DentaPix_Clinic.Areas.Customer.Controllers
 {
     public class HomeController : Controller
     {

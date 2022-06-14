@@ -1,7 +1,7 @@
 ﻿using DentaPix_Clinic.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DentaPix_Clinic.Controllers
+namespace DentaPix_Clinic.Areas.Admin.Controllers
 {
     public class TreatmentsController : Controller
     {

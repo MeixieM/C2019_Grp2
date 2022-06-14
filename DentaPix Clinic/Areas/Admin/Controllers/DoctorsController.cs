@@ -2,7 +2,7 @@
 using DentaPix_Clinic.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DentaPix_Clinic.Controllers
+namespace DentaPix_Clinic.Areas.Admin.Controllers
 {
     public class DoctorsController : Controller
     {
