@@ -22,4 +22,8 @@
     <ProjectReference Include="..\DentaPix Clinic.DataAccess\DentaPix Clinic.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\assets\images\" />
+  </ItemGroup>
+
 </Project>
