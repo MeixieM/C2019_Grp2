@@ -9,8 +9,11 @@ namespace DentaPix_Clinic.DataAccess.Repository
         {
             _db = db;
             Doctor = new DoctorRepository(_db);
+            Patient = new PatientRepository(_db);
         }
         public IDoctorRepository Doctor { get; private set; }
+        public IPatientRepository Patient { get; private set; }
+
 
         public void Save()
         {
