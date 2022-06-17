@@ -1,6 +1,7 @@
 ﻿using DentaPix_Clinic.DataAccess.Repository.IRepository;
 using DentaPix_Clinic.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DentaPix_Clinic.Areas.Admin.Controllers
 {
@@ -23,17 +24,25 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
         //GET
         public IActionResult Upsert(int? id)
         {
+            Appointment appointment = new();
+            IEnumerable<SelectListItem> DoctorList = _unitOfWork.Doctor.GetAll().Select(
+                u => new SelectListItem
+                {
+                    Text = u.FullName,
+                    Value = u.DoctorId.ToString()
+                });
+
             if (id == null || id == 0)
             {
-                //create patient
-                return NotFound();
+                //create appointment
+                return View(appointment);
             }
             else
             {
-                //update patient
+                //update appointment
             }
 
-            return View();
+            return View(appointment);
         }
 
         //POST

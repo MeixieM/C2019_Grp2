@@ -1,0 +1,68 @@
+﻿@model Appointment
+
+<form method="post" asp-action="Upsert">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary">Edit Appointment</h2>
+			<hr />
+		</div>
+		<div class="mb-3 mx-5">
+			<label asp-for="AppointmentNo"></label>
+			<input asp-for="AppointmentNo" class="form-control"/>
+			<span asp-validation-for="AppointmentNo" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="FirstName"></label>
+			<input asp-for="FirstName" class="form-control"/>
+			<span asp-validation-for="FirstName" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="LastName"></label>
+			<input asp-for="LastName" class="form-control"/>
+			<span asp-validation-for="LastName" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Email"></label>
+			<input asp-for="Email" class="form-control"/>
+			<span asp-validation-for="Email" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="MobileNo"></label>
+			<input asp-for="MobileNo" class="form-control"/>
+			<span asp-validation-for="MobileNo" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="AppointmentDate "></label>
+			<input asp-for="AppointmentDate " class="form-control"/>
+			<span asp-validation-for="AppointmentDate " class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="NatureOfAppointment "></label>
+			<input asp-for="NatureOfAppointment " class="form-control"/>
+			<span asp-validation-for="NatureOfAppointment " class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Birthday"></label>
+			<input asp-for="Birthday" class="form-control"/>
+			<span asp-validation-for="Birthday" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Message"></label>
+			<textarea asp-for="Message" rows="3" class="form-control"></textarea>
+			<span asp-validation-for="Message" class="text-danger"></span>
+		</div>	
+		<div class="mb-3">
+			<label asp-for="RegisteredDate "></label>
+			<input asp-for="RegisteredDate " class="form-control"/>
+			<span asp-validation-for="RegisteredDate " class="text-danger"></span>
+		</div>	
+		<a asp-controller="Doctors" asp-action="Index" class="btn btn-outline-secondary" style="width: 150px">Back</a>
+		<button type="submit" class="btn btn-outline-primary" style="width: 150px">Update</button>
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
