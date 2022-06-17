@@ -13,7 +13,7 @@ namespace DentaPix_Clinic.Models
         //public PaymentStatus PaymentStatus { get; set; }
         public string Method { get; set; }
         public string Notes { get; set; }
-        public string Amount { get; set; }
+        public double Amount { get; set; }
         //public string Balance { get; set; }
         //public int PatientId { get; set; }
         //Relationships

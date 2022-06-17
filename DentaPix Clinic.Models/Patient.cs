@@ -7,8 +7,11 @@ namespace DentaPix_Clinic.Models
     {
         [Key]
         public int PatientId { get; set; }
-        public string ProfilePictureURL { get; set; }
+        public string ImageURL { get; set; }
+        [Required]
         public string FirstName { get; set; }
+        [Required]
+
         public string LastName { get; set; }
         public string MiddleInitial { get; set; }
         public DateTime Birthday { get; set; }
@@ -17,7 +20,7 @@ namespace DentaPix_Clinic.Models
         public string Email { get; set; }
         public string Gender { get; set; }
         public string Parent { get; set; }
-        public DateTime RegisteredDate { get; set; }
+        public DateTime RegisteredDate { get; set; } = DateTime.Now;
 
         //Relationships
         public List<Patient_Appointment> Patients_Appointments { get; set; }
@@ -36,6 +39,8 @@ namespace DentaPix_Clinic.Models
         public int DoctorId { get; set; }
         [ForeignKey("DoctorId")]
         public Doctor Doctor { get; set; }
+
+
 
     }
 }
