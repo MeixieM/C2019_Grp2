@@ -4,6 +4,7 @@ using DentaPix_Clinic.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentaPix_Clinic.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220618193617_removePaymentIdToPatientsTable")]
+    partial class removePaymentIdToPatientsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,7 +166,7 @@ namespace DentaPix_Clinic.Migrations
                     b.Property<DateTime>("RegisteredDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("TreatmentId")
+                    b.Property<int>("TreatmentId")
                         .HasColumnType("int");
 
                     b.HasKey("PatientId");
@@ -275,9 +277,13 @@ namespace DentaPix_Clinic.Migrations
                         .WithMany("Patients")
                         .HasForeignKey("PaymentId");
 
-                    b.HasOne("DentaPix_Clinic.Models.Treatment", null)
+                    b.HasOne("DentaPix_Clinic.Models.Treatment", "Treatment")
                         .WithMany("Patients")
-                        .HasForeignKey("TreatmentId");
+                        .HasForeignKey("TreatmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Treatment");
                 });
 
             modelBuilder.Entity("DentaPix_Clinic.Models.Patient_Appointment", b =>

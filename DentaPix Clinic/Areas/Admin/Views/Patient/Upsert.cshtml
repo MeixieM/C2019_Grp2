@@ -4,13 +4,14 @@
 
 	<div class="border p-3 mt-4 m-xl-5 row">
 		<div class="row pb-2">
-			<h2 class="text-primary">Edit Patient</h2>
+			<h2 class="text-primary">Patient</h2>
+			@*<h2 class="text-primary">@(Model.Patient.PatientId!=0?"Update": "Add")Patient</h2>*@
 			<hr />
 		</div>
 	
 		<div class="mb-3">
 			<label asp-for="Patient.ImageURL"></label>
-			<input type="file" class="form-control"/>
+			<input type="file" id="uploadBox" name="file" class="form-control"/>
 		</div>
 
 			<div class="col-4 form-floating mb-3">
@@ -62,7 +63,15 @@
 
 		<div class="col-12">
 			<a asp-controller="Patient" asp-action="Index" class="btn btn-outline-secondary" style="width: 150px">Back</a>
-			<button type="submit" class="btn btn-outline-primary" style="width: 150px">Update</button>
+			<button type="submit" onclick="return ValidateInput()" class="btn btn-outline-primary" style="width: 150px">Update</button>
+			
+			@*@if(Model.Patient.PatientId!=0){
+				<button type="submit" class="btn btn-outline-primary" style="width: 150px">Update</button>
+			}
+			else
+			{
+			<button type="submit" onclick="return ValidateInput()"  class="btn btn-outline-primary" style="width: 150px">Add</button>
+			}*@
 		</div>
 	</div>
 
@@ -70,6 +79,21 @@
 
 @section Scripts { 
 	@{
-		<partial name="_ValidationScriptsPartial" />
+	<partial name="_ValidationScriptsPartial" />
+
 	}
+	<script>
+		function ValidateInput(){
+			if(document.getElementById("uploadBox").value=="")
+				Swal.fire({
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: 'Please upload an Image!',
+					});
+			return false;
+	}
+return true;
+}
+	</script>
+	
 }

@@ -1,5 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace DentaPix_Clinic.Models
 {
@@ -7,6 +7,7 @@ namespace DentaPix_Clinic.Models
     {
         [Key]
         public int PatientId { get; set; }
+        [ValidateNever]
         public string ImageURL { get; set; }
         [Required(ErrorMessage = "First Name is required")]
 
@@ -28,17 +29,20 @@ namespace DentaPix_Clinic.Models
         public DateTime RegisteredDate { get; set; } = DateTime.Now;
 
         //Relationships
+        [ValidateNever]
         public List<Patient_Appointment> Patients_Appointments { get; set; }
 
         //Treatment
-        public int TreatmentId { get; set; }
-        [ForeignKey("TreatmentId")]
-        public Treatment Treatment { get; set; }
+        //public int TreatmentId { get; set; }
+        //[ForeignKey("TreatmentId")]
+        //[ValidateNever]
+        //public Treatment Treatment { get; set; }
 
         //Payment
-        public int PaymentId { get; set; }
-        [ForeignKey("PaymentId")]
-        public Payment Payment { get; set; }
+        //public int PaymentId { get; set; }
+        //[ForeignKey("PaymentId")]
+        //[ValidateNever]
+        //public Payment Payment { get; set; }
 
         //Doctor
         //public int DoctorId { get; set; }

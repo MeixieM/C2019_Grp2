@@ -1,4 +1,5 @@
 ﻿using DentaPix_Clinic.Data.Enums;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -7,6 +8,7 @@ namespace DentaPix_Clinic.Models
     public class Payment
     {
         [Key]
+        [ValidateNever]
         public int PaymentId { get; set; }
 
         public DateTime Date { get; set; }

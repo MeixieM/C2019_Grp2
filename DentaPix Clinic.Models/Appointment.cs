@@ -1,5 +1,6 @@
 ﻿using DentaPix_Clinic.Data.Enums;
 using DentaPix_Clinic.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -39,10 +40,14 @@ public class Appointment
     public AppointmentStatus AppointmentStatus { get; set; }
 
     //Relationships
+    [ValidateNever]
     public List<Patient_Appointment> Patients_Appointments { get; set; }
     //Doctor
+
     public int DoctorId { get; set; }
     [ForeignKey("DoctorId")]
+
+    [ValidateNever]
     public Doctor Doctor { get; set; }
 
 

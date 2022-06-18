@@ -8,10 +8,12 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
     public class PatientController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _hostEnvironment;
 
-        public PatientController(IUnitOfWork unitOfWork)
+        public PatientController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
         }
 
         public IActionResult Index()
@@ -24,29 +26,23 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
         //GET
         public IActionResult Upsert(int? id)
         {
-            //PatientVM patientVM = new()
-            //{
-            //    Patient = new(),
-            //    AppointmentList = _unitOfWork.Appointment.GetAll().Select(i => new SelectListItem
-            //    {
-            //        Text = i.AppointmentDa,
-            //        Value = i.AppointmendId.ToString()
-            //    })
-            //};
+            PatientVM patientVM = new();
+
+            //var patientFromDb = _unitOfWork.Patient.GetFirstOrDefault(u => u.PatientId == id);
 
             if (id == null || id == 0)
             {
                 //create appointment
                 //ViewBag.DoctorList = DoctorList;
                 //ViewData["DoctorList"] = DoctorList;
-                return View();
+                return View(patientVM);
             }
             else
             {
                 //update appointment
             }
 
-            return View();
+            return View(patientVM);
         }
 
         //POST
@@ -56,9 +52,22 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_unitOfWork.Patient.Update(obj);
+                string wwwRoothPath = _hostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRoothPath, @"images\patientsDP");
+                    var extension = Path.GetExtension(file.FileName);
+
+                    using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    obj.Patient.ImageURL = @"\images\patientsDP" + fileName + extension;
+                }
+                _unitOfWork.Patient.Add(obj.Patient);
                 _unitOfWork.Save();
-                TempData["success"] = "Patient updated successfully";
+                TempData["success"] = "Patient added successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
