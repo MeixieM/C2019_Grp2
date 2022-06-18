@@ -2,6 +2,7 @@
 using DentaPix_Clinic.Models;
 using DentaPix_Clinic.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DentaPix_Clinic.Areas.Admin.Controllers
 {
@@ -26,9 +27,15 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
         //GET
         public IActionResult Upsert(int? id)
         {
-            PatientVM patientVM = new();
-
-            //var patientFromDb = _unitOfWork.Patient.GetFirstOrDefault(u => u.PatientId == id);
+            PatientVM patientVM = new()
+            {
+                Patient = new(),
+                DoctorList = _unitOfWork.Doctor.GetAll().Select(i => new SelectListItem
+                {
+                    Text = i.FullName,
+                    Value = i.DoctorId.ToString()
+                })
+            };
 
             if (id == null || id == 0)
             {

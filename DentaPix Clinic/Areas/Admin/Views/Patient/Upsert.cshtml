@@ -4,8 +4,8 @@
 
 	<div class="border p-3 mt-4 m-xl-5 row">
 		<div class="row pb-2">
-			<h2 class="text-primary">Patient</h2>
-			@*<h2 class="text-primary">@(Model.Patient.PatientId!=0?"Update": "Add")Patient</h2>*@
+			@*<h2 class="text-primary">Patient</h2>*@
+			<h2 class="text-primary">@(Model.Patient.PatientId!=0?"Update": "Add") Patient</h2>
 			<hr />
 		</div>
 	
@@ -63,15 +63,15 @@
 
 		<div class="col-12">
 			<a asp-controller="Patient" asp-action="Index" class="btn btn-outline-secondary" style="width: 150px">Back</a>
-			<button type="submit" onclick="return ValidateInput()" class="btn btn-outline-primary" style="width: 150px">Update</button>
+			@*<button type="submit" onclick="return ValidateInput()" class="btn btn-outline-primary" style="width: 150px">Update</button>*@
 			
-			@*@if(Model.Patient.PatientId!=0){
+			@if(Model.Patient.PatientId!=0){
 				<button type="submit" class="btn btn-outline-primary" style="width: 150px">Update</button>
 			}
 			else
 			{
 			<button type="submit" onclick="return ValidateInput()"  class="btn btn-outline-primary" style="width: 150px">Add</button>
-			}*@
+			}
 		</div>
 	</div>
 
