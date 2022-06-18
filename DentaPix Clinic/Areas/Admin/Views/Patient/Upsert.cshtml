@@ -1,0 +1,75 @@
+﻿@model DentaPix_Clinic.Models.ViewModels.PatientVM
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+
+	<div class="border p-3 mt-4 m-xl-5 row">
+		<div class="row pb-2">
+			<h2 class="text-primary">Edit Patient</h2>
+			<hr />
+		</div>
+	
+		<div class="mb-3">
+			<label asp-for="Patient.ImageURL"></label>
+			<input type="file" class="form-control"/>
+		</div>
+
+			<div class="col-4 form-floating mb-3">
+				<input asp-for="Patient.FirstName" class="form-control" id="floatingInput" placeholder="ex.Jane">
+				<label for="floatingInput">First Name</label>
+				<span asp-validation-for="Patient.FirstName" class="text-danger"></span>
+			</div>  
+			 <div class="col-4 form-floating mb-3">
+				<input asp-for="Patient.MiddleInitial" class="form-control" id="floatingInput" placeholder="ex.Jane">
+				<label for="floatingInput">Middle Initial</label>
+				<span asp-validation-for="Patient.MiddleInitial" class="text-danger"></span>
+			</div>  
+			<div class="col-4 form-floating mb-3">
+				<input asp-for="Patient.LastName" class="form-control" id="floatingInput" placeholder="ex.Jane">
+				<label for="floatingInput">Last Name</label>
+				<span asp-validation-for="Patient.LastName" class="text-danger"></span>
+			</div>  
+
+		<div class="mb-3 col-6">
+			<label asp-for="Patient.Birthday"></label>
+			<input asp-for="Patient.Birthday" class="form-control"/>
+			<span asp-validation-for="Patient.Birthday" class="text-danger"></span>
+		</div>
+		<div class="mb-3  col-6">
+		   <label asp-for="Patient.Address"></label>
+			<input asp-for="Patient.Address" class="form-control"/>
+			<span asp-validation-for="Patient.Address" class="text-danger"></span>
+		</div>
+		<div class="mb-3 form-floating col-6">
+			<input asp-for="Patient.PhoneNo" class="form-control" id="floatingInput" placeholder="ex.Jane">
+			<label for="floatingInput">Mobile Number</label>
+			<span asp-validation-for="Patient.PhoneNo" class="text-danger"></span>
+		</div>
+		<div class="mb-3 form-floating col-6">
+			<input asp-for="Patient.Email" class="form-control" id="floatingInput" placeholder="ex.Jane">
+			<label for="floatingInput">Email</label>
+			<span asp-validation-for="Patient.Email" class="text-danger"></span>
+		</div>
+		<div class="mb-3 form-floating col-6">
+			<input asp-for="Patient.Gender" class="form-control" id="floatingInput" placeholder="ex.Jane">
+			<label for="floatingInput">Gender</label>
+			<span asp-validation-for="Patient.Gender" class="text-danger"></span>
+		</div>
+		<div class="mb-3 form-floating col-6">
+			<input asp-for="Patient.Parent" class="form-control" id="floatingInput" placeholder="ex.Jane">
+			<label for="floatingInput">Parent/Guardian</label>
+			<span asp-validation-for="Patient.Parent" class="text-danger"></span>
+		</div>
+
+		<div class="col-12">
+			<a asp-controller="Patient" asp-action="Index" class="btn btn-outline-secondary" style="width: 150px">Back</a>
+			<button type="submit" class="btn btn-outline-primary" style="width: 150px">Update</button>
+		</div>
+	</div>
+
+</form>
+
+@section Scripts { 
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}

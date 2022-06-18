@@ -8,5 +8,6 @@
         public int AppointmentId { get; set; }
         public Appointment Appointment { get; set; }
 
+
     }
 }

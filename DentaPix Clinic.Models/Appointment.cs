@@ -1,6 +1,7 @@
 ﻿using DentaPix_Clinic.Data.Enums;
 using DentaPix_Clinic.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class Appointment
 {
@@ -22,12 +23,14 @@ public class Appointment
 
     public string MobileNo { get; set; }
     [Required]
-
     public DateTime AppointmentDate { get; set; }
     [Required]
 
     public string NatureOfAppointment { get; set; }
 
+
+    [DataType(DataType.Date)]
+    [DisplayFormat(DataFormatString = "{MM/dd/yyyy}")]
     public DateTime Birthday { get; set; }
 
     public string Message { get; set; }
@@ -37,6 +40,10 @@ public class Appointment
 
     //Relationships
     public List<Patient_Appointment> Patients_Appointments { get; set; }
+    //Doctor
+    public int DoctorId { get; set; }
+    [ForeignKey("DoctorId")]
+    public Doctor Doctor { get; set; }
 
 
 }

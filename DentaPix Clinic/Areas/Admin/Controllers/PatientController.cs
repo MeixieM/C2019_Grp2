@@ -1,5 +1,6 @@
 ﻿using DentaPix_Clinic.DataAccess.Repository.IRepository;
 using DentaPix_Clinic.Models;
+using DentaPix_Clinic.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DentaPix_Clinic.Areas.Admin.Controllers
@@ -15,22 +16,34 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Doctor> objDoctorList = _unitOfWork.Doctor.GetAll();
-            return View(objDoctorList);
+            IEnumerable<Patient> objPatientList = _unitOfWork.Patient.GetAll();
+            return View(objPatientList);
         }
 
 
         //GET
         public IActionResult Upsert(int? id)
         {
+            //PatientVM patientVM = new()
+            //{
+            //    Patient = new(),
+            //    AppointmentList = _unitOfWork.Appointment.GetAll().Select(i => new SelectListItem
+            //    {
+            //        Text = i.AppointmentDa,
+            //        Value = i.AppointmendId.ToString()
+            //    })
+            //};
+
             if (id == null || id == 0)
             {
-                //create patient
-                return NotFound();
+                //create appointment
+                //ViewBag.DoctorList = DoctorList;
+                //ViewData["DoctorList"] = DoctorList;
+                return View();
             }
             else
             {
-                //update patient
+                //update appointment
             }
 
             return View();
@@ -39,17 +52,13 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(Doctor obj)
+        public IActionResult Upsert(PatientVM obj, IFormFile file)
         {
-            if (obj.FullName == obj.Career.ToString())
-            {
-                ModelState.AddModelError("FullName", "Career cannot exactly match the FullName");
-            }
             if (ModelState.IsValid)
             {
-                _unitOfWork.Doctor.Update(obj);
+                //_unitOfWork.Patient.Update(obj);
                 _unitOfWork.Save();
-                TempData["success"] = "Doctor updated successfully";
+                TempData["success"] = "Patient updated successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -98,14 +107,14 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var doctorFromDb = _unitOfWork.Doctor.GetFirstOrDefault(u => u.DoctorId == id);
+            var patientFromDb = _unitOfWork.Patient.GetFirstOrDefault(u => u.PatientId == id);
 
 
-            if (doctorFromDb == null)
+            if (patientFromDb == null)
             {
                 return NotFound();
             }
-            return View(doctorFromDb);
+            return View(patientFromDb);
         }
 
         //POST
@@ -113,15 +122,15 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _unitOfWork.Doctor.GetFirstOrDefault(u => u.DoctorId == id);
+            var obj = _unitOfWork.Patient.GetFirstOrDefault(u => u.PatientId == id);
 
             if (obj == null)
             {
                 return NotFound();
             }
-            _unitOfWork.Doctor.Remove(obj);
+            _unitOfWork.Patient.Remove(obj);
             _unitOfWork.Save();
-            TempData["success"] = "Doctor deleted successfully";
+            TempData["success"] = "Patient deleted successfully";
             return RedirectToAction("Index");
         }
     }

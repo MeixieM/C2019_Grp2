@@ -21,6 +21,7 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<Patient_Appointment>().HasOne(a => a.Appointment).WithMany(pa => pa.Patients_Appointments).HasForeignKey(a => a.AppointmentId);
         modelBuilder.Entity<Patient_Appointment>().HasOne(a => a.Patient).WithMany(pa => pa.Patients_Appointments).HasForeignKey(a => a.PatientId);
 
+
         base.OnModelCreating(modelBuilder);
     }
     public DbSet<Doctor> Doctors { get; set; }

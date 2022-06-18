@@ -8,14 +8,19 @@ namespace DentaPix_Clinic.Models
         [Key]
         public int PatientId { get; set; }
         public string ImageURL { get; set; }
-        [Required]
+        [Required(ErrorMessage = "First Name is required")]
+
         public string FirstName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Last Name is required")]
 
         public string LastName { get; set; }
+        [Required(ErrorMessage = "Middle Initial is required")]
         public string MiddleInitial { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }
         public string Address { get; set; }
+        [Required(ErrorMessage = "Mobile Number is required")]
         public string PhoneNo { get; set; }
         public string Email { get; set; }
         public string Gender { get; set; }
@@ -36,9 +41,9 @@ namespace DentaPix_Clinic.Models
         public Payment Payment { get; set; }
 
         //Doctor
-        public int DoctorId { get; set; }
-        [ForeignKey("DoctorId")]
-        public Doctor Doctor { get; set; }
+        //public int DoctorId { get; set; }
+        //[ForeignKey("DoctorId")]
+        //public Doctor Doctor { get; set; }
 
 
 
