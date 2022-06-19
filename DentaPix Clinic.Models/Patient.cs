@@ -29,8 +29,8 @@ namespace DentaPix_Clinic.Models
         public string Gender { get; set; }
         public string Parent { get; set; }
 
-
         public DateTime RegisteredDate { get; set; } = DateTime.Now;
+
 
         //Relationships
         [ValidateNever]

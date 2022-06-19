@@ -37,17 +37,18 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
 
             if (id == null || id == 0)
             {
-                //create appointment
+                //create patient
                 //ViewBag.DoctorList = DoctorList;
                 //ViewData["DoctorList"] = DoctorList;
                 return View(patientVM);
             }
             else
             {
-                //update appointment
+                patientVM.Patient = _unitOfWork.Patient.GetFirstOrDefault(u => u.PatientId == id);
+                return View(patientVM);
+                //update patient
             }
 
-            return View(patientVM);
         }
 
         //POST
