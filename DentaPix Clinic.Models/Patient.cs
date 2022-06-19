@@ -18,6 +18,7 @@ namespace DentaPix_Clinic.Models
         public string LastName { get; set; }
         [Required(ErrorMessage = "Middle Initial is required")]
         public string MiddleInitial { get; set; }
+
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }
@@ -27,6 +28,8 @@ namespace DentaPix_Clinic.Models
         public string Email { get; set; }
         public string Gender { get; set; }
         public string Parent { get; set; }
+
+
         public DateTime RegisteredDate { get; set; } = DateTime.Now;
 
         //Relationships
