@@ -8,6 +8,7 @@ namespace DentaPix_Clinic.Models
         [Key]
         public int PatientId { get; set; }
         [ValidateNever]
+        [Display(Name = "Profile Picture")]
         public string ImageURL { get; set; }
         [Required(ErrorMessage = "First Name is required")]
 

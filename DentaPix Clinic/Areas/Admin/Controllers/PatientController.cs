@@ -1,5 +1,4 @@
 ﻿using DentaPix_Clinic.DataAccess.Repository.IRepository;
-using DentaPix_Clinic.Models;
 using DentaPix_Clinic.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -19,8 +18,7 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Patient> objPatientList = _unitOfWork.Patient.GetAll();
-            return View(objPatientList);
+            return View();
         }
 
 
@@ -81,41 +79,6 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
         }
 
 
-        ////GET
-        //public IActionResult Details(int? id)
-        //{
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var doctorFromDb = _db.Doctors.Find(id);
-
-        //    if (doctorFromDb == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(doctorFromDb);
-        //}
-
-        ////POST
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Details(Doctor obj)
-        //{
-        //    if (obj.FullName == obj.Career.ToString())
-        //    {
-        //        ModelState.AddModelError("FullName", "Career cannot exactly match the FullName");
-        //    }
-        //    if (ModelState.IsValid)
-        //    {
-        //        _db.Doctors.Update(obj);
-        //        _db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(obj);
-        //}
-
-
         //GET
         public IActionResult Delete(int? id)
         {
@@ -149,5 +112,15 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
             TempData["success"] = "Patient deleted successfully";
             return RedirectToAction("Index");
         }
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var patientList = _unitOfWork.Patient.GetAll();
+            return Json(new { data = patientList });
+
+        }
+        #endregion
     }
 }
+
