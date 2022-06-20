@@ -65,13 +65,32 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
                     var uploads = Path.Combine(wwwRoothPath, @"images\patientsDP");
                     var extension = Path.GetExtension(file.FileName);
 
+                    if (obj.Patient.ImageURL != null)
+                    {
+                        var oldImagePath = Path.Combine(wwwRoothPath, obj.Patient.ImageURL.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
                     using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
                     }
-                    obj.Patient.ImageURL = @"\images\patientsDP" + fileName + extension;
+                    obj.Patient.ImageURL = @"\images\patientsDP\" + fileName + extension;
                 }
-                _unitOfWork.Patient.Add(obj.Patient);
+
+                if (obj.Patient.PatientId == 0)
+                {
+                    _unitOfWork.Patient.Add(obj.Patient);
+
+                }
+                else
+                {
+                    _unitOfWork.Patient.Update(obj.Patient);
+                }
+
                 _unitOfWork.Save();
                 TempData["success"] = "Patient added successfully";
                 return RedirectToAction("Index");
@@ -79,40 +98,6 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
             return View(obj);
         }
 
-
-        //GET
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            var patientFromDb = _unitOfWork.Patient.GetFirstOrDefault(u => u.PatientId == id);
-
-
-            if (patientFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(patientFromDb);
-        }
-
-        //POST
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(int? id)
-        {
-            var obj = _unitOfWork.Patient.GetFirstOrDefault(u => u.PatientId == id);
-
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            _unitOfWork.Patient.Remove(obj);
-            _unitOfWork.Save();
-            TempData["success"] = "Patient deleted successfully";
-            return RedirectToAction("Index");
-        }
         #region API CALLS
         [HttpGet]
         public IActionResult GetAll()
@@ -121,6 +106,30 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
             return Json(new { data = patientList });
 
         }
+
+        //POST
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var obj = _unitOfWork.Patient.GetFirstOrDefault(u => u.PatientId == id);
+
+            if (obj == null)
+            {
+                return Json(new { success = false, message = "Error while deleting" });
+            }
+
+            var oldImagePath = Path.Combine(_hostEnvironment.WebRootPath, obj.ImageURL.TrimStart('\\'));
+            if (System.IO.File.Exists(oldImagePath))
+            {
+                System.IO.File.Delete(oldImagePath);
+            }
+
+            _unitOfWork.Patient.Remove(obj);
+            _unitOfWork.Save();
+            return Json(new { success = true, message = "Delete Successful" });
+
+        }
+
         #endregion
     }
 }

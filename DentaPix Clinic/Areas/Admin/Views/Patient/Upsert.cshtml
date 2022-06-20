@@ -1,10 +1,13 @@
 ﻿@model DentaPix_Clinic.Models.ViewModels.PatientVM
 
 <form method="post" asp-action="Upsert" enctype="multipart/form-data">
+	<input asp-for="Patient.PatientId" hidden/>
+	<input asp-for="Patient.ImageURL" hidden/>
 
-	<div class="border p-3 mt-4 m-xl-5 row">
-		<div class="row pb-2">
-			@*<h2 class="text-primary">Patient</h2>*@
+	<div class="row">
+		<div class="col-10">
+		<div class="border p-3 mt-4 row">
+		<div class="col-12 pb-2">
 			<h2 class="text-primary">@(Model.Patient.PatientId!=0?"Update": "Add") Patient</h2>
 			<hr />
 		</div>
@@ -74,6 +77,15 @@
 			}
 		</div>
 	</div>
+
+		</div>
+		<div class="col-2 pt-4">
+			<img src="@Model.Patient.ImageURL" 
+			 width= "100%" style="border-radius: 5px; border:1px solid #bbb9b9 " 
+			/>
+		</div>
+	</div>
+
 
 </form>
 
