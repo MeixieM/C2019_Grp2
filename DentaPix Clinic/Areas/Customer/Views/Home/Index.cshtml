@@ -1,32 +1,92 @@
-﻿@{
-	ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<Doctor>
 
-<div class="text-center">
-@*
-	<section id="home-section" class="home-section full-screen home-bg">
-		<div class="hero-video">
-			<video autoplay="" loop="" muted="" playsinline="" preload="" poster="./assets/images/general/video_placeholder.jpg" id="spb-video" __idm_id__="409601">
-				<source src="./assets/images/spb_video.mp4" type="video/mp4">
+@*Video  Landing Page*@
+
+
+<div class="video-background">
+	<div class="video-wrap">
+		<div id="video">
+			<video id="bgvid" autoplay loop muted playsinline>
+				<source src="./assets/images/spb_video.mp4" type="video/mp4"/>
 			</video>
-			
-		<div class="video-overlay text-center">
-				<h1 id="hero-text-p" data-aos-once="true" data-aos="zoom-in" style="top: -0.4px;" class="aos-init aos-animate">KOOL SMILES <br> Dental Clinics</h1>
-			</div>
 		</div>
-			<br/> <br/>
-	<h1 class="display-4">KOOL SMILES</h1>
-	<h1 class="display-4">DENTAL CLINICS</h1>
+	</div>
+</div>
+					
+<div class="caption text-center">
+	<h1>DENTAPIX <br /> DENTAL CLINIC</h1>
+	<button class="btn btn-outline-light btn-lg">BOOK NOW</button>
 
-
-</section>*@
-
-	
 </div>
 
+@*Team*@
+<section  class="bg-light text-dark p-5 text-center">
+		<div  class="container">
+	<div class="row pb-3">
+		<h1><b>Meet the team</b></h1>		
+		<h2>that put the shine in your smile</h2>
+	@foreach(var doctor in Model)
+	{
+		<div class="col-lg-3 col-md-6">
+			<div class="row pd-2">
+				<div  class="col-12 p-1" style="border:1px solid #fff; border-radius: 5px">
+					<div  class="card">
+						<img src="@doctor.ProfilePictureURL" class="card-img-top rounded" />
+						<div class="card-body">
+						<div class="pl-1">
+							<p class="card-title h4 text-primary"><b>@doctor.FullName</b></p>
+							<p class="card-title h5 ">@doctor.Career</p>
+						</div>
+						<div class="pl-1">
+							@*<p class="card-title h5 ">@doctor.Interest</p>*@
+						</div>
+						</div>
+						
+					</div>
 
-<video src="./assets/images/spb_video.mp4" autoplay loop muted></video>
-<div class="overlay">
-	<h1 class="display-1 text-center" style="color:#fff; font-size: 120px; 
-">DENTAPIX <br /> DENTAL CLINIC</h1>
+				</div>
+
+			</div>	
+		</div>
+	}
+
+	</div>
 </div>
+</section>
+
+
+@*Our Services*@
+<section  class="bg-light text-dark p-5 text-center">
+		<div  class="container">
+	<div class="row pb-3">
+		<h1><b>Our Services</b></h1>		
+		
+	@foreach(var doctor in Model)
+	{
+		<div class="col-lg-3 col-md-6">
+			<div class="row pd-2">
+				<div  class="col-12 p-1" style="border:1px solid #fff; border-radius: 5px">
+					<div class="card">
+						<img src="@doctor.ProfilePictureURL" class="card-img-top rounded"/>
+						<div class="card-body">
+						<div class="pl-1">
+							<p class="card-title h4 text-primary"><b>@doctor.FullName</b></p>
+							<p class="card-title h5 ">@doctor.Career</p>
+						</div>
+						<div class="pl-1">
+							@*<p class="card-title h5 ">@doctor.Interest</p>*@
+						</div>
+						</div>
+							<a asp-action="Details" class="btn btn-outline-primary form-control" asp-route-id="@doctor.DoctorId">
+								Details
+							</a>
+					</div>
+				</div>
+			</div>	
+		</div>
+	}
+
+	</div>
+</div>
+</section>
+
