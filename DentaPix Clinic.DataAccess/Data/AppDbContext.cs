@@ -32,5 +32,6 @@ public class AppDbContext : IdentityDbContext
     public DbSet<Treatment> Treatments { get; set; }
     public DbSet<Payment> Payments { get; set; }
 
+    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
 }
