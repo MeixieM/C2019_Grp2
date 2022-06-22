@@ -2,20 +2,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace DentaPix_Clinic.Areas.Admin.Controllers
+namespace DentaPix_Clinic.Areas.Admin.Controllers;
+[Area("Admin")]
+public class PaymentsController : Controller
 {
-    public class PaymentsController : Controller
-    {
-        private readonly AppDbContext _context;
+    private readonly AppDbContext _context;
 
-        public PaymentsController(AppDbContext context)
-        {
-            _context = context;
-        }
-        public async Task<IActionResult> Index()
-        {
-            var allPayments = await _context.Payments.ToListAsync();
-            return View();
-        }
+    public PaymentsController(AppDbContext context)
+    {
+        _context = context;
+    }
+    public async Task<IActionResult> Index()
+    {
+        var allPayments = await _context.Payments.ToListAsync();
+        return View();
     }
 }

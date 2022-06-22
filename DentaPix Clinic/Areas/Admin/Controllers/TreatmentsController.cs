@@ -1,21 +1,20 @@
 ﻿using DentaPix_Clinic.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DentaPix_Clinic.Areas.Admin.Controllers
+namespace DentaPix_Clinic.Areas.Admin.Controllers;
+[Area("Admin")]
+public class TreatmentsController : Controller
 {
-    public class TreatmentsController : Controller
+    private readonly AppDbContext _context;
+
+    public TreatmentsController(AppDbContext context)
     {
-        private readonly AppDbContext _context;
+        _context = context;
+    }
 
-        public TreatmentsController(AppDbContext context)
-        {
-            _context = context;
-        }
-
-        public IActionResult Index()
-        {
-            var data = _context.Treatments.ToList();
-            return View();
-        }
+    public IActionResult Index()
+    {
+        var data = _context.Treatments.ToList();
+        return View();
     }
 }
