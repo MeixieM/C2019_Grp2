@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DentaPix_Clinic.Areas.Admin.Controllers;
-
-
+[Area("Admin")]
 
 public class PatientController : Controller
 {

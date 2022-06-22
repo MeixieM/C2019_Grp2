@@ -21,6 +21,14 @@ function loadDataTable() {
             { "data": "address", "width": "15%" },
             { "data": "gender", "width": "15%" },
             {
+                "data": "registeredDate",
+                "render": function (data) {
+                    var date = new Date(data);
+                    var month = date.getMonth() + 1;
+                    return (month.toString().length > 1 ? month : "0" + month) + "/" + date.getDate() + "/" + date.getFullYear();
+                }
+            },
+            {
                 "data": "patientId",
                 "render": function (data) {
                     return `
