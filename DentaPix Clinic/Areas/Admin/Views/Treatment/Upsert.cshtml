@@ -1,0 +1,82 @@
+﻿@model Treatment
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+	<input asp-for="TreatmentId" hidden/>
+	<input asp-for="Image" hidden/>
+
+	<div class="row">
+		<div class="col-10">
+		<div class="border p-3 mt-4 row">
+		<div class="col-12 pb-2">
+			<h2 class="text-primary">@(Model.TreatmentId!=0?"Update": "Add") Treatment</h2>
+			<hr />
+		</div>
+	
+		<div class="mb-3">
+			<label asp-for="Image"></label>
+			<input type="file" id="uploadBox" name="file" class="form-control"/>
+
+		</div>
+
+		<div class="mb-3 form-floating col-6">
+			<input asp-for="Name" class="form-control" id="floatingInput">
+			<label for="floatingInput">Treatment Name</label>
+			<span asp-validation-for="Name" class="text-danger"></span>
+		</div>
+		
+		<div class="mb-3 form-floating col-6">
+			<input asp-for="TreatmentPrice" class="form-control" id="floatingInput" >
+			<label for="floatingInput">Price</label>
+			<span asp-validation-for="TreatmentPrice" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Description"></label>
+			<textarea asp-for="Description" rows="3" class="form-control"></textarea>
+
+		</div>
+
+		<div class="col-12">
+			<a asp-controller="Treatment" asp-action="Index" class="btn btn-outline-secondary" style="width: 150px">Back</a>
+			
+			@if(Model.TreatmentId!=0){
+				<button type="submit" class="btn btn-outline-primary" style="width: 150px">Update</button>
+			}
+			else
+			{
+			<button type="submit" onclick="return ValidateInput()"  class="btn btn-outline-primary" style="width: 150px">Add</button>
+			}
+		</div>
+	</div>
+
+		</div>
+		<div class="col-2 pt-4">
+			<img src="@Model.Image" 
+			 width= "100%" style="border-radius: 5px; border:1px solid #bbb9b9 " 
+			/>
+		</div>
+	</div>
+
+
+</form>
+
+@section Scripts { 
+	@{
+	<partial name="_ValidationScriptsPartial" />
+
+	}
+
+	<script>
+		function ValidateInput(){
+			if(document.getElementById("uploadBox").value==""){
+				Swal.fire({
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: 'Please upload Treatment Image!',
+					});
+			return false;
+			}
+			return true;
+}
+	</script>
+	
+}

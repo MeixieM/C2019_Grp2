@@ -11,10 +11,12 @@ namespace DentaPix_Clinic.DataAccess.Repository
             Doctor = new DoctorRepository(_db);
             Patient = new PatientRepository(_db);
             Appointment = new AppointmentRepository(_db);
+            Treatment = new TreatmentRepository(_db);
         }
         public IDoctorRepository Doctor { get; private set; }
         public IPatientRepository Patient { get; private set; }
         public IAppointmentRepository Appointment { get; private set; }
+        public ITreatmentRepository Treatment { get; private set; }
 
 
         public void Save()

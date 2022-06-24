@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\assets\images\" />
+    <Folder Include="wwwroot\images\treatmentPics\" />
     <Folder Include="wwwroot\images\patientsDP\" />
   </ItemGroup>
 
