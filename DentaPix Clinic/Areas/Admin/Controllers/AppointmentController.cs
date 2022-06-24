@@ -1,8 +1,6 @@
 ﻿using DentaPix_Clinic.DataAccess.Repository.IRepository;
 using DentaPix_Clinic.Models;
-using DentaPix_Clinic.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DentaPix_Clinic.Areas.Admin.Controllers;
 [Area("Admin")]
@@ -18,126 +16,81 @@ public class AppointmentController : Controller
 
     public IActionResult Index()
     {
-        IEnumerable<Doctor> objDoctorList = _unitOfWork.Doctor.GetAll();
-        return View(objDoctorList);
+        return View();
     }
 
 
     //GET
     public IActionResult Upsert(int? id)
     {
-        AppointmentVM appointmentVM = new()
-        {
-            Appointment = new(),
-            DoctorList = _unitOfWork.Doctor.GetAll().Select(i => new SelectListItem
-            {
-                Text = i.FullName,
-                Value = i.DoctorId.ToString()
-            })
-        };
-
+        Appointment appointment = new();
 
         if (id == null || id == 0)
         {
-            //create appointment
-            //ViewBag.DoctorList = DoctorList;
-            //ViewData["DoctorList"] = DoctorList;
-            return View(appointmentVM);
+
+            return View(appointment);
         }
         else
         {
-            //update appointment
+            appointment = _unitOfWork.Appointment.GetFirstOrDefault(u => u.AppointmentId == id);
+            return View(appointment);
         }
 
-        return View(appointmentVM);
     }
 
     //POST
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Upsert(Doctor obj)
+    public IActionResult Upsert(Appointment obj)
     {
-        if (obj.FullName == obj.Career.ToString())
-        {
-            ModelState.AddModelError("FullName", "Career cannot exactly match the FullName");
-        }
         if (ModelState.IsValid)
         {
-            _unitOfWork.Doctor.Update(obj);
+
+            if (obj.AppointmentId == 0)
+            {
+                _unitOfWork.Appointment.Add(obj);
+                TempData["success"] = "Appointment created successfully";
+
+            }
+            else
+            {
+                _unitOfWork.Appointment.Update(obj);
+                TempData["success"] = "Appointment updated successfully";
+            }
+
             _unitOfWork.Save();
-            TempData["success"] = "Doctor updated successfully";
             return RedirectToAction("Index");
         }
         return View(obj);
     }
 
-
-    ////GET
-    //public IActionResult Details(int? id)
-    //{
-    //    if (id == null || id == 0)
-    //    {
-    //        return NotFound();
-    //    }
-    //    var doctorFromDb = _db.Doctors.Find(id);
-
-    //    if (doctorFromDb == null)
-    //    {
-    //        return NotFound();
-    //    }
-    //    return View(doctorFromDb);
-    //}
-
-    ////POST
-    //[HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public IActionResult Details(Doctor obj)
-    //{
-    //    if (obj.FullName == obj.Career.ToString())
-    //    {
-    //        ModelState.AddModelError("FullName", "Career cannot exactly match the FullName");
-    //    }
-    //    if (ModelState.IsValid)
-    //    {
-    //        _db.Doctors.Update(obj);
-    //        _db.SaveChanges();
-    //        return RedirectToAction("Index");
-    //    }
-    //    return View(obj);
-    //}
-
-
-    //GET
-    public IActionResult Delete(int? id)
+    #region API CALLS
+    [HttpGet]
+    public IActionResult GetAll()
     {
-        if (id == null || id == 0)
-        {
-            return NotFound();
-        }
-        var doctorFromDb = _unitOfWork.Doctor.GetFirstOrDefault(u => u.DoctorId == id);
+        var appointmentList = _unitOfWork.Appointment.GetAll();
+        return Json(new { data = appointmentList });
 
-
-        if (doctorFromDb == null)
-        {
-            return NotFound();
-        }
-        return View(doctorFromDb);
     }
 
     //POST
-    [HttpPost, ActionName("Delete")]
-    [ValidateAntiForgeryToken]
-    public IActionResult DeletePOST(int? id)
+    [HttpDelete]
+    public IActionResult Delete(int? id)
     {
-        var obj = _unitOfWork.Doctor.GetFirstOrDefault(u => u.DoctorId == id);
+        var obj = _unitOfWork.Appointment.GetFirstOrDefault(u => u.AppointmentId == id);
 
         if (obj == null)
         {
-            return NotFound();
+            return Json(new { success = false, message = "Error while deleting" });
         }
-        _unitOfWork.Doctor.Remove(obj);
+
+
+        _unitOfWork.Appointment.Remove(obj);
         _unitOfWork.Save();
-        TempData["success"] = "Doctor deleted successfully";
-        return RedirectToAction("Index");
+        return Json(new { success = true, message = "Delete Successful" });
+
     }
+
+    #endregion
 }
+

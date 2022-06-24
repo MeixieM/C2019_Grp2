@@ -7,7 +7,7 @@
 <div class="container p-3">
 	<div class="row pt-4">
 		<div class="col-6">
-			<h2 class="text-primary">Manage Appointments</h2>
+			<h2 class="text-primary">Manage Appointment</h2>
 		</div>
 	<div class="col-6 text-end">
 		<a asp-controller="Appointment" asp-action="Upsert" class="btn btn-outline-primary">
@@ -16,27 +16,25 @@
 	</div>
 </div>
 <br/> <br/>
-<div class="row">
-	<div class="col-md-12 offset-md-0">
 
-		<table class="table table-bordered table-striped " style="width: 100%">
+
+		<table id="tblData" class="table table-bordered table-striped " style="width: 100%">
 			<thead>
 				<tr>
 					<th>Appointment No.</th>
 					<th>Patient Name</th>
-					<th>Appointment</th>
-					<th>Phone</th>
-					<th>Appointment Status</th>
-					<th>Doctor</th>
-					<th>Register Date</th>
+					<th>Appointment Date</th>
+					<th>Appointment Time</th>
+					<th>Appointment Day</th>
+					@*<th>Appointment Status</th>*@
 					<th>Actions</th>
 
 				</tr>
 			</thead>
-			
 		</table>
 	</div>
-</div>
-</div>
 
 
+@section Scripts{
+	<script src="~/js/appointmentDebug.js"></script>
+}

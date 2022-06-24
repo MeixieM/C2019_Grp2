@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace DentaPix_Clinic.Models
 {
@@ -10,7 +11,7 @@ namespace DentaPix_Clinic.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public double TreatmentPrice { get; set; }
-
+        [ValidateNever]
         public List<Patient> Patients { get; set; }
 
 

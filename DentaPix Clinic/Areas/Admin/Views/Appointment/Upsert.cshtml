@@ -1,70 +1,90 @@
-﻿@model DentaPix_Clinic.Models.ViewModels.AppointmentVM
+﻿@model Appointment
 
-<form method="post" asp-action="Upsert">
-	<div class="border p-3 mt-4">
-		<div class="row pb-2">
-			<h2 class="text-primary">Edit Appointment</h2>
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+	<input asp-for="AppointmentId" hidden/>
+
+	<div class="row">
+		<div class="col-10">
+		<div class="border p-3 mt-4 row">
+		<div class="col-12 pb-2">
+			<h2 class="text-primary">@(Model.AppointmentId!=0?"Update": "Add") Appointment</h2>
 			<hr />
 		</div>
+			<div class="mb-3 form-floating col-12">
+				<input asp-for="AppointmentNo" class="form-control" id="floatingInput" placeholder="ex.Jane">
+				<label for="floatingInput">Appointment No.</label>
+				<span asp-validation-for="AppointmentNo" class="text-danger"></span>
+			</div>  
+			<div class="mb-3 form-floating col-6">
+				<input asp-for="FirstName" class="form-control" id="floatingInput" placeholder="ex.Jane">
+				<label for="floatingInput">First Name</label>
+				<span asp-validation-for="FirstName" class="text-danger"></span>
+			</div>  
 
-		<div class="mb-3 mx-5">
-			<label asp-for="Appointment.AppointmentNo"></label>
-			<input asp-for="Appointment.AppointmentNo" class="form-control"/>
-			<span asp-validation-for="Appointment.AppointmentNo" class="text-danger"></span>
+			<div class="mb-3 form-floating col-6">
+				<input asp-for="LastName" class="form-control" id="floatingInput" placeholder="ex.Jane">
+				<label for="floatingInput">Last Name</label>
+				<span asp-validation-for="LastName" class="text-danger"></span>
+			</div>  
+		<div class="mb-3 form-floating col-6">
+			<input asp-for="Email" class="form-control" id="floatingInput" placeholder="ex.Jane">
+			<label for="floatingInput">Email</label>
+			<span asp-validation-for="Email" class="text-danger"></span>
 		</div>
-		<div class="mb-3">
-			<label asp-for="Appointment.FirstName"></label>
-			<input asp-for="Appointment.FirstName" class="form-control"/>
-			<span asp-validation-for="Appointment.FirstName" class="text-danger"></span>
+		<div class="mb-3 form-floating col-6">
+			<input asp-for="MobileNo" class="form-control" id="floatingInput" placeholder="ex.Jane">
+			<label for="floatingInput">Mobile Number</label>
+			<span asp-validation-for="MobileNo" class="text-danger"></span>
 		</div>
-		<div class="mb-3">
-			<label asp-for="Appointment.LastName"></label>
-			<input asp-for="Appointment.LastName" class="form-control"/>
-			<span asp-validation-for="Appointment.LastName" class="text-danger"></span>
-		</div>
-		<div class="mb-3">
-			<label asp-for="Appointment.Email"></label>
-			<input asp-for="Appointment.Email" class="form-control"/>
-			<span asp-validation-for="Appointment.Email" class="text-danger"></span>
-		</div>
-		<div class="mb-3">
-			<label asp-for="Appointment.MobileNo"></label>
-			<input asp-for="Appointment.MobileNo" class="form-control"/>
-			<span asp-validation-for="Appointment.MobileNo" class="text-danger"></span>
-		</div>
-		<div class="mb-3">
-			<label asp-for="Appointment.AppointmentDate "></label>
-			<input asp-for="Appointment.AppointmentDate " class="form-control"/>
-			<span asp-validation-for="Appointment.AppointmentDate " class="text-danger"></span>
-		</div>
-		<div class="mb-3">
-			<label asp-for="Appointment.NatureOfAppointment "></label>
-			<input asp-for="Appointment.NatureOfAppointment " class="form-control"/>
-			<span asp-validation-for="Appointment.NatureOfAppointment " class="text-danger"></span>
-		</div>
-		<div class="mb-3">
-			<label asp-for="Appointment.Birthday"></label>
-			<input asp-for="Appointment.Birthday" class="form-control"/>
-			<span asp-validation-for="Appointment.Birthday" class="text-danger"></span>
-		</div>
-		<div class="mb-3">
-			<label asp-for="Appointment.Message"></label>
-			<textarea asp-for="Appointment.Message" rows="3" class="form-control"></textarea>
-		</div>	
-		<div class="mb-3">
-			<label asp-for="Appointment.DoctorId"></label>
-			<select asp-for="Appointment.DoctorId" asp-items="@Model.DoctorList" class="form-select">
-				<option disabled selected>--Select Doctor--</option>
-			</select>
-		</div>	
 		
-		<a asp-controller="Appointment" asp-action="Index" class="btn btn-outline-secondary" style="width: 150px">Back</a>
-		<button type="submit" class="btn btn-outline-primary" style="width: 150px">Update</button>
+		<div class="mb-3 col-6">
+			<label asp-for="Birthday"></label>
+			<input asp-for="Birthday" class="form-control"/>
+			<span asp-validation-for="Birthday" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3 form-floating col-6">
+			<input asp-for="NatureOfAppointment" class="form-control" id="floatingInput" placeholder="ex.Jane">
+			<label for="floatingInput">Nature of Appointment</label>
+			<span asp-validation-for="NatureOfAppointment" class="text-danger"></span>
+		</div>
+		
+		<div class="mb-3 col-6">
+			<label asp-for="AppointmentDate"></label>
+			<input asp-for="AppointmentDate" class="form-control"/>
+			<span asp-validation-for="AppointmentDate" class="text-danger"></span>
+		</div>
+
+
+		<div class="mb-3">
+			<label asp-for="Message"></label>
+			<textarea asp-for="Message" rows="3" class="form-control"></textarea>
+		</div>
+
+		<div class="col-12">
+			<a asp-controller="Appointment" asp-action="Index" class="btn btn-outline-secondary" style="width: 150px">Back</a>
+			
+			@if(Model.AppointmentId != 0){
+				<button type="submit" class="btn btn-outline-primary" style="width: 150px">Update</button>
+			}
+			else
+			{
+			<button type="submit"   class="btn btn-outline-primary" style="width: 150px">Add</button>
+			}
+		</div>
 	</div>
+
+		</div>
+
+	</div>
+
+
 </form>
 
 @section Scripts { 
 	@{
-		<partial name="_ValidationScriptsPartial" />
+	<partial name="_ValidationScriptsPartial" />
+
 	}
+
 }

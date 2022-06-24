@@ -4,6 +4,7 @@ using DentaPix_Clinic.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentaPix_Clinic.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220623222243_appointmentfix")]
+    partial class appointmentfix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,11 +26,11 @@ namespace DentaPix_Clinic.Migrations
 
             modelBuilder.Entity("DentaPix_Clinic.Models.Appointment", b =>
                 {
-                    b.Property<int>("AppointmentId")
+                    b.Property<int>("AppointmendId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmendId"), 1L, 1);
 
                     b.Property<DateTime>("AppointmentDate")
                         .HasColumnType("datetime2");
@@ -55,6 +57,7 @@ namespace DentaPix_Clinic.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Message")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNo")
@@ -68,7 +71,7 @@ namespace DentaPix_Clinic.Migrations
                     b.Property<DateTime>("RegisteredDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("AppointmentId");
+                    b.HasKey("AppointmendId");
 
                     b.ToTable("Appointments");
                 });

@@ -18,8 +18,10 @@ namespace DentaPix_Clinic.Models
         public double Amount { get; set; }
         public double Payments { get; set; }
         public double Balance { get; set; }
-        //public int PatientId { get; set; }
+
         //Relationships
+        [ValidateNever]
+
         public List<Patient> Patients { get; set; }
 
     }

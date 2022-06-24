@@ -4,6 +4,7 @@ using DentaPix_Clinic.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentaPix_Clinic.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220623200132_updateAppointmentModel")]
+    partial class updateAppointmentModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,13 +24,13 @@ namespace DentaPix_Clinic.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("DentaPix_Clinic.Models.Appointment", b =>
+            modelBuilder.Entity("Appointment", b =>
                 {
-                    b.Property<int>("AppointmentId")
+                    b.Property<int>("AppointmendId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmentId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AppointmendId"), 1L, 1);
 
                     b.Property<DateTime>("AppointmentDate")
                         .HasColumnType("datetime2");
@@ -41,6 +43,9 @@ namespace DentaPix_Clinic.Migrations
 
                     b.Property<DateTime>("Birthday")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("DoctorId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -55,6 +60,7 @@ namespace DentaPix_Clinic.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Message")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNo")
@@ -65,10 +71,17 @@ namespace DentaPix_Clinic.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PatientId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("RegisteredDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("AppointmentId");
+                    b.HasKey("AppointmendId");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("PatientId");
 
                     b.ToTable("Appointments");
                 });
@@ -462,6 +475,25 @@ namespace DentaPix_Clinic.Migrations
                     b.HasIndex("DoctorId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("Appointment", b =>
+                {
+                    b.HasOne("DentaPix_Clinic.Models.Doctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DentaPix_Clinic.Models.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("PatientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Patient");
                 });
 
             modelBuilder.Entity("DentaPix_Clinic.Models.Patient", b =>

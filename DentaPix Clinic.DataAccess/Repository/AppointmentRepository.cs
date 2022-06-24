@@ -19,7 +19,6 @@ namespace DentaPix_Clinic.DataAccess.Repository
         public void Update(Appointment obj)
         {
             _db.Appointments.Update(obj);
-
         }
 
     }

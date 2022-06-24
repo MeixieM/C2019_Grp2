@@ -36,8 +36,6 @@ namespace DentaPix_Clinic.Models
 
 
         //Relationships
-        [ValidateNever]
-        public List<Patient_Appointment> Patients_Appointments { get; set; }
 
         //Treatment
         //public int TreatmentId { get; set; }
@@ -54,6 +52,8 @@ namespace DentaPix_Clinic.Models
         //Doctor
         //public int DoctorId { get; set; }
         //[ForeignKey("DoctorId")]
+        //[ValidateNever]
+
         //public Doctor Doctor { get; set; }
 
 
