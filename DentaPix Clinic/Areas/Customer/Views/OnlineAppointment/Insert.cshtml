@@ -1,38 +1,34 @@
 ﻿@model Appointment
 
-<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+<form method="post" asp-action="Insert" enctype="multipart/form-data">
 	<input asp-for="AppointmentId" hidden/>
 
 	<div class="row">
 		<div class="col-10">
 		<div class="border p-3 mt-4 row">
 		<div class="col-12 pb-2">
-			<h2 class="text-primary">@(Model.AppointmentId!=0?"Update": "Add") Appointment</h2>
+			<h2 class="text-primary">Book an Appointment</h2>
 			<hr />
 		</div>
-			<div class="mb-3 form-floating col-12">
-				<input asp-for="AppointmentId" disabled class="form-control" id="floatingInput" placeholder="ex.Jane">
-				<label for="floatingInput">Appointment Id.</label>
-				<span asp-validation-for="AppointmentId" class="text-danger"></span>
-			</div>  
+		
 			<div class="mb-3 form-floating col-6">
-				<input asp-for="FirstName" class="form-control" id="floatingInput" placeholder="ex.Jane">
+				<input asp-for="FirstName" class="form-control" id="floatingInput" >
 				<label for="floatingInput">First Name</label>
 				<span asp-validation-for="FirstName" class="text-danger"></span>
 			</div>  
 
 			<div class="mb-3 form-floating col-6">
-				<input asp-for="LastName" class="form-control" id="floatingInput" placeholder="ex.Jane">
+				<input asp-for="LastName" class="form-control" id="floatingInput" >
 				<label for="floatingInput">Last Name</label>
 				<span asp-validation-for="LastName" class="text-danger"></span>
 			</div>  
 		<div class="mb-3 form-floating col-6">
-			<input asp-for="Email" class="form-control" id="floatingInput" placeholder="ex.Jane">
+			<input asp-for="Email" class="form-control" id="floatingInput" >
 			<label for="floatingInput">Email</label>
 			<span asp-validation-for="Email" class="text-danger"></span>
 		</div>
 		<div class="mb-3 form-floating col-6">
-			<input asp-for="MobileNo" class="form-control" id="floatingInput" placeholder="ex.Jane">
+			<input asp-for="MobileNo" class="form-control" id="floatingInput" >
 			<label for="floatingInput">Mobile Number</label>
 			<span asp-validation-for="MobileNo" class="text-danger"></span>
 		</div>
@@ -44,7 +40,7 @@
 		</div>
 
 		<div class="mb-3 form-floating col-6">
-			<input asp-for="NatureOfAppointment" class="form-control" id="floatingInput" placeholder="ex.Jane">
+			<input asp-for="NatureOfAppointment" class="form-control" id="floatingInput">
 			<label for="floatingInput">Nature of Appointment</label>
 			<span asp-validation-for="NatureOfAppointment" class="text-danger"></span>
 		</div>
@@ -62,15 +58,8 @@
 		</div>
 
 		<div class="col-12">
-			<a asp-controller="Appointment" asp-action="Index" class="btn btn-outline-secondary" style="width: 150px">Back</a>
-			
-			@if(Model.AppointmentId != 0){
-				<button type="submit" class="btn btn-outline-primary" style="width: 150px">Update</button>
-			}
-			else
-			{
-			<button type="submit"   class="btn btn-outline-primary" style="width: 150px">Add</button>
-			}
+
+			<button type="submit"   class="btn btn-outline-primary" style="width: 150px">Submit</button>
 		</div>
 	</div>
 

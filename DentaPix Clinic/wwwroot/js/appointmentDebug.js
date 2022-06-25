@@ -11,7 +11,7 @@ function loadDataTable() {
         },
         "columns": [
 
-            { "data": "appointmentNo", "width": "15%" },
+            { "data": "appointmentId", "width": "15%" },
 
             {
                 "data": "firstName", "width": "20%",

@@ -18,5 +18,6 @@ public class AppDbContext : IdentityDbContext
     public DbSet<Payment> Payments { get; set; }
 
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+    public DbSet<AppointmentCart> AppointmentCarts { get; set; }
 
 }

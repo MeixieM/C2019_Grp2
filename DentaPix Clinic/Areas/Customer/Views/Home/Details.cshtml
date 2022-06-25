@@ -1,19 +1,20 @@
-﻿@model Appointment
+﻿@model AppointmentCart
 
-<form method="post" asp-action="Upsert" enctype="multipart/form-data">
-	<input asp-for="AppointmentId" hidden/>
+
+@*<form method="post">
+	<input asp-for="Id" hidden/>
 
 	<div class="row">
 		<div class="col-10">
 		<div class="border p-3 mt-4 row">
 		<div class="col-12 pb-2">
-			<h2 class="text-primary">@(Model.AppointmentId!=0?"Update": "Add") Appointment</h2>
+			<h2 class="text-primary">Appointment</h2>
 			<hr />
 		</div>
 			<div class="mb-3 form-floating col-12">
-				<input asp-for="AppointmentId" disabled class="form-control" id="floatingInput" placeholder="ex.Jane">
-				<label for="floatingInput">Appointment Id.</label>
-				<span asp-validation-for="AppointmentId" class="text-danger"></span>
+				<input asp-for="AppointmentNo" class="form-control" id="floatingInput" placeholder="ex.Jane">
+				<label for="floatingInput">Appointment No.</label>
+				<span asp-validation-for="AppointmentNo" class="text-danger"></span>
 			</div>  
 			<div class="mb-3 form-floating col-6">
 				<input asp-for="FirstName" class="form-control" id="floatingInput" placeholder="ex.Jane">
@@ -61,16 +62,12 @@
 			<textarea asp-for="Message" rows="3" class="form-control"></textarea>
 		</div>
 
+
 		<div class="col-12">
 			<a asp-controller="Appointment" asp-action="Index" class="btn btn-outline-secondary" style="width: 150px">Back</a>
 			
-			@if(Model.AppointmentId != 0){
-				<button type="submit" class="btn btn-outline-primary" style="width: 150px">Update</button>
-			}
-			else
-			{
 			<button type="submit"   class="btn btn-outline-primary" style="width: 150px">Add</button>
-			}
+			
 		</div>
 	</div>
 
@@ -79,12 +76,12 @@
 	</div>
 
 
-</form>
+</form>*@
 
-@section Scripts { 
+@*@section Scripts { 
 	@{
 	<partial name="_ValidationScriptsPartial" />
 
 	}
 
-}
+}*@

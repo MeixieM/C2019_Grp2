@@ -7,10 +7,7 @@ namespace DentaPix_Clinic.Models
     {
         [Key]
         public int AppointmentId { get; set; }
-        [Range(1, 1000, ErrorMessage = "Appointment Number must be greater than 0!")]
-        public int AppointmentNo { get; set; }
-        //public int DoctorId { get; set; }
-        //public int PatientId { get; set; }
+
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -34,7 +31,7 @@ namespace DentaPix_Clinic.Models
         [Required]
 
 
-        public string NatureOfAppointment { get; set; }
+        public string? NatureOfAppointment { get; set; }
 
 
         [DataType(DataType.Date)]

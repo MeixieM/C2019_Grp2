@@ -11,7 +11,7 @@ function loadDataTable() {
         },
         "columns": [
 
-            { "data": "appointmentNo", "width": "15%" },
+            { "data": "appointmentId", "width": "15%" },
 
             {
                 "data": "firstName", "width": "20%",
@@ -33,20 +33,27 @@ function loadDataTable() {
                 "data": "appointmentDate",
                 "render": function (data) {
                     var date = new Date(data);
-                    var month = date.getMonth() + 1;
-                    return (month.toString().length > 1 ? month : "0" + month) + "/" + date.getDate() + "/" + date.getFullYear();
+                    var hours = date.getHours();
+                    var minutes = date.getMinutes();
+                    var ampm = hours >= 12 ? 'PM' : 'AM';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // the hour '0' should be '12'
+                    minutes = minutes < 10 ? '0' + minutes : minutes;
+                    var strTime = hours + ':' + minutes + ' ' + ampm;
+                    return (strTime.toString());
                 }
             },
             {
                 "data": "appointmentDate",
                 "render": function (data) {
+                    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
                     var date = new Date(data);
-                    var month = date.getMonth() + 1;
-                    return (month.toString().length > 1 ? month : "0" + month) + "/" + date.getDate() + "/" + date.getFullYear();
+                    var day = weekday[ date.getDay()];
+                    return (day);
                 }
             },
             {
-                "data": "patientId",
+                "data": "appointmentId",
                 "render": function (data) {
                     return `
                             <div class="w-80" role="group">

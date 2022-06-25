@@ -27,16 +27,16 @@ public class HomeController : Controller
         return View(doctorList);
     }
 
-    //    public IActionResult Details(int id)
-    //    {
-    //        MyAppointment appObj = new()
-    //        {
-    //            Count = 1,
-    //            Appointment = _unitOfWork.Appointment.GetFirstOrDefault(u => u.AppointmendId == id);
+    public IActionResult Details(int id)
+    {
+        AppointmentCart cartObj = new()
+        {
+            Count = 1,
+            Appointment = _unitOfWork.Appointment.GetFirstOrDefault(u => u.AppointmentId == id)
 
-    //    }
-    //        return View(appObj);
-    //}
+        };
+        return View(cartObj);
+    }
 
 
 
