@@ -1,7 +1,7 @@
 ﻿@model Appointment
 
 <form method="post" asp-action="Insert" enctype="multipart/form-data">
-	<input asp-for="AppointmentId" hidden/>
+	<input hidden asp-for="AppointmentId" />
 
 	<div class="row">
 		<div class="col-10">
@@ -59,7 +59,11 @@
 
 		<div class="col-12">
 
-			<button type="submit"   class="btn btn-outline-primary" style="width: 150px">Submit</button>
+			<button type="submit"  asp-action="Details" class="btn btn-outline-primary" style="width: 150px" asp-route-appointmentId="AppointmentId">Submit</button>
+
+			@*<a class="btn btn-link btn-outline-primary" asp-action="Details" style="text-decoration: none" asp-route-appointmentId="AppointmentId">BOOK NOW</a>*@
+
+
 		</div>
 	</div>
 

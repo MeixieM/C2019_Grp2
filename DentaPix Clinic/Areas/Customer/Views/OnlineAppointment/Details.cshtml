@@ -1,0 +1,35 @@
+﻿@model AppointmentCart
+
+<form method="post">
+	<input hidden asp-for="AppointmentId" />
+
+	<div class="row">
+		<div class="col-10">
+		<div class="border p-3 mt-4 row">
+		<div class="col-12 pb-2">
+			<h2 class="text-primary">Appointment Details</h2>
+			<hr />
+		</div>
+		
+			<div class="mb-3 col-6">
+				@*<h5 class="text-muted">@Model.Appointment.FirstName</h5>*@
+@*				<h5 class="text-muted">@Model.Appointment.LastName</h5>
+				<h5 class="text-muted">@Model.Appointment.NatureOfAppointment</h5>
+				<h5 class="text-muted">@Model.Appointment.AppointmentDate</h5>
+				<h5 class="text-muted">@Model.Appointment.Message</h5>
+				<div class="col-10"><input asp-for="Count"/></div>*@
+			</div>  
+
+		  
+		<div class="col-12">
+			<a class="btn btn-link btn-outline-secondary" asp-area="Customer"  asp-controller="OnlineAppointment" asp-action="Details" style="text-decoration: none" >View Appointment</a>
+			<button type="submit"   class="btn btn-outline-primary" style="width: 150px">Submit</button>
+		</div>
+	</div>
+
+		</div>
+
+	</div>
+
+
+</form>

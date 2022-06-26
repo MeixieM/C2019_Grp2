@@ -1,7 +1,6 @@
 ﻿using DentaPix_Clinic.DataAccess.Repository.IRepository;
 using DentaPix_Clinic.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace DentaPix_Clinic.Areas.Customer.Controllers;
 
@@ -27,27 +26,18 @@ public class HomeController : Controller
         return View(doctorList);
     }
 
-    public IActionResult Details(int id)
-    {
-        AppointmentCart cartObj = new()
-        {
-            Count = 1,
-            Appointment = _unitOfWork.Appointment.GetFirstOrDefault(u => u.AppointmentId == id)
+    //public IActionResult Details(int id)
+    //{
+    //    AppointmentCart cartObj = new()
+    //    {
+    //        Count = 1,
+    //        Appointment = _unitOfWork.Appointment.GetFirstOrDefault(u => u.AppointmentId == id)
 
-        };
-        return View(cartObj);
-    }
+    //    };
+    //    return View(cartObj);
+    //}
 
 
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-    }
 }

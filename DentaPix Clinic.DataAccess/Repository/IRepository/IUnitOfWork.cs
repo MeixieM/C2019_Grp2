@@ -7,6 +7,7 @@
         IAppointmentRepository Appointment { get; }
         ITreatmentRepository Treatment { get; }
         IApplicationUserRepository ApplicationUser { get; }
+        IAppointmentCartRepository AppointmentCart { get; }
         void Save();
     }
 }
