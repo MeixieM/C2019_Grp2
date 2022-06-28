@@ -19,5 +19,6 @@ public class AppDbContext : IdentityDbContext
 
     public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     public DbSet<AppointmentCart> AppointmentCarts { get; set; }
+    public DbSet<Overview> Overviews { get; set; }
 
 }

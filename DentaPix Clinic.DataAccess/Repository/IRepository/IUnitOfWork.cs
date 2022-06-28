@@ -8,6 +8,8 @@
         ITreatmentRepository Treatment { get; }
         IApplicationUserRepository ApplicationUser { get; }
         IAppointmentCartRepository AppointmentCart { get; }
+        IOverviewRepository Overview { get; }
+        IPaymentRepository Payment { get; }
         void Save();
     }
 }

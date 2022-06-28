@@ -27,7 +27,12 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
             {
                 ListCart = _unitOfWork.AppointmentCart.GetAll(u => u.ApplicationUserId == claim.Value, includeProperties: "Appointment")
             };
+
+
             return View(AppointmentCartVM);
         }
+
+
+
     }
 }

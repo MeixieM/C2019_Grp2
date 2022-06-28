@@ -14,6 +14,8 @@ namespace DentaPix_Clinic.DataAccess.Repository
             Treatment = new TreatmentRepository(_db);
             ApplicationUser = new ApplicationUserRepository(_db);
             AppointmentCart = new AppointmentCartRepository(_db);
+            Overview = new OverviewRepository(_db);
+            Payment = new PaymentRepository(_db);
         }
         public IDoctorRepository Doctor { get; private set; }
         public IPatientRepository Patient { get; private set; }
@@ -21,6 +23,8 @@ namespace DentaPix_Clinic.DataAccess.Repository
         public ITreatmentRepository Treatment { get; private set; }
         public IApplicationUserRepository ApplicationUser { get; private set; }
         public IAppointmentCartRepository AppointmentCart { get; private set; }
+        public IOverviewRepository Overview { get; private set; }
+        public IPaymentRepository Payment { get; private set; }
 
 
         public void Save()

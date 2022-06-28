@@ -4,6 +4,7 @@ using DentaPix_Clinic.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentaPix_Clinic.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220628153319_addOverviewToDb")]
+    partial class addOverviewToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -205,6 +207,9 @@ namespace DentaPix_Clinic.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PaymentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PhoneNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -219,6 +224,8 @@ namespace DentaPix_Clinic.Migrations
 
                     b.HasIndex("DoctorId");
 
+                    b.HasIndex("PaymentId");
+
                     b.HasIndex("TreatmentId");
 
                     b.ToTable("Patients");
@@ -232,38 +239,30 @@ namespace DentaPix_Clinic.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PaymentId"), 1L, 1);
 
-                    b.Property<double?>("Amount")
+                    b.Property<double>("Amount")
                         .HasColumnType("float");
 
-                    b.Property<double?>("Balance")
+                    b.Property<double>("Balance")
                         .HasColumnType("float");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Method")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PatientId")
+                    b.Property<int>("PaymentStatus")
                         .HasColumnType("int");
 
-                    b.Property<string>("PaymentStatus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double?>("Payments")
+                    b.Property<double>("Payments")
                         .HasColumnType("float");
 
-                    b.Property<int>("TreatmentId")
-                        .HasColumnType("int");
-
                     b.HasKey("PaymentId");
-
-                    b.HasIndex("PatientId");
-
-                    b.HasIndex("TreatmentId");
 
                     b.ToTable("Payments");
                 });
@@ -583,28 +582,13 @@ namespace DentaPix_Clinic.Migrations
                         .WithMany("Patients")
                         .HasForeignKey("DoctorId");
 
+                    b.HasOne("DentaPix_Clinic.Models.Payment", null)
+                        .WithMany("Patients")
+                        .HasForeignKey("PaymentId");
+
                     b.HasOne("DentaPix_Clinic.Models.Treatment", null)
                         .WithMany("Patients")
                         .HasForeignKey("TreatmentId");
-                });
-
-            modelBuilder.Entity("DentaPix_Clinic.Models.Payment", b =>
-                {
-                    b.HasOne("DentaPix_Clinic.Models.Patient", "Patient")
-                        .WithMany()
-                        .HasForeignKey("PatientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DentaPix_Clinic.Models.Treatment", "Treatment")
-                        .WithMany()
-                        .HasForeignKey("TreatmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Patient");
-
-                    b.Navigation("Treatment");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -670,6 +654,11 @@ namespace DentaPix_Clinic.Migrations
                 });
 
             modelBuilder.Entity("DentaPix_Clinic.Models.Doctor", b =>
+                {
+                    b.Navigation("Patients");
+                });
+
+            modelBuilder.Entity("DentaPix_Clinic.Models.Payment", b =>
                 {
                     b.Navigation("Patients");
                 });

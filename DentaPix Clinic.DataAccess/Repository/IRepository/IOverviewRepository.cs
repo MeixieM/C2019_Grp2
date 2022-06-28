@@ -2,9 +2,9 @@
 
 namespace DentaPix_Clinic.DataAccess.Repository.IRepository
 {
-    public interface IPatientRepository : IRepository<Patient>
-    {
-        void Update(Patient obj);
-    }
 
+    public interface IOverviewRepository : IRepository<Overview>
+    {
+        void Update(Overview obj);
+    }
 }

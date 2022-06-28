@@ -1,0 +1,118 @@
+﻿@model DentaPix_Clinic.Models.ViewModels.PaymentVM
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+	<input asp-for="Payment.PaymentId" hidden/>
+
+	<div class="row">
+		<div class="col-10">
+		<div class="border p-3 mt-4 row">
+		<div class="col-12 pb-2">
+			<h2 class="text-primary">@(Model.Payment.PaymentId!=0?"Update": "Add") Payment</h2>
+			<hr />
+		</div>
+
+
+		<div class="mb-3 col-12">
+			<label asp-for="Payment.PatientId"></label>
+			<select asp-for="Payment.PatientId" asp-items="@Model.PatientList" class="form-select">
+				<option disabled selected>--Select Patient--</option>
+			</select>
+			<span asp-validation-for="Payment.PatientId" class="text-danger"></span>
+		</div>
+
+
+
+		<div class="mb-3 col-2">
+			<label asp-for="Payment.Date"></label>
+			<input asp-for="Payment.Date" class="form-control"/>
+			<span asp-validation-for="Payment.Date" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3 col-6">
+			<label asp-for="Payment.TreatmentId"></label>
+			<select asp-for="Payment.TreatmentId" asp-items="@Model.TreatmentList" class="form-select">
+				<option disabled selected>--Select Treatment--</option>
+			</select>
+			<span asp-validation-for="Payment.TreatmentId" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3 col-2">
+			<label asp-for="Payment.Method"></label>
+			<input asp-for="Payment.Method" class="form-control"/>
+			<span asp-validation-for="Payment.Method" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3 col-4">
+			<label asp-for="Payment.Description"></label>
+			<input asp-for="Payment.Description" class="form-control"/>
+			<span asp-validation-for="Payment.Description" class="text-danger"></span>
+		</div>
+
+
+		<div class="mb-3 col-2">
+			<label asp-for="Payment.Amount"></label>
+			<input asp-for="Payment.Amount" class="form-control"/>
+			<span asp-validation-for="Payment.Amount" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-2">
+			<label asp-for="Payment.Payments"></label>
+			<input asp-for="Payment.Payments" class="form-control"/>
+			<span asp-validation-for="Payment.Payments" class="text-danger"></span>
+		</div>
+		<div class="mb-3 col-2">
+			<label asp-for="Payment.Balance"></label>
+			<input asp-for="Payment.Balance" class="form-control"/>
+			<span asp-validation-for="Payment.Balance" class="text-danger"></span>
+		</div>
+
+		<div class="mb-3 col-2">
+			<label asp-for="Payment.PaymentStatus"></label>
+			<input asp-for="Payment.PaymentStatus" class="form-control"/>
+			<span asp-validation-for="Payment.PaymentStatus" class="text-danger"></span>
+		</div>
+
+		
+
+
+
+		<div class="col-12">
+			<a asp-controller="Payment" asp-action="Index" class="btn btn-outline-secondary" style="width: 150px">Back</a>
+			
+			@if(Model.Payment.PaymentId!=0){
+				<button type="submit" class="btn btn-outline-primary" style="width: 150px">Update</button>
+			}
+			else
+			{
+			<button type="submit" onclick="return ValidateInput()"  class="btn btn-outline-primary" style="width: 150px">Add</button>
+			}
+		</div>
+	</div>
+
+		</div>
+		
+	</div>
+
+
+</form>
+
+@section Scripts { 
+	@{
+	<partial name="_ValidationScriptsPartial" />
+
+	}
+
+	<script>
+		function ValidateInput(){
+			if(document.getElementById("uploadBox").value==""){
+				Swal.fire({
+					  icon: 'error',
+					  title: 'Oops...',
+					  text: 'Please upload a Profile Picture!',
+					});
+			return false;
+			}
+			return true;
+}
+	</script>
+	
+}

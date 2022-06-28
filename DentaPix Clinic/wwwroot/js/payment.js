@@ -8,40 +8,47 @@ $(document).ready(function () {
 
 
 
-
 function loadDataTable() {
 
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url": "/Admin/Patient/GetAll"
+            "url": "/Admin/Payment/GetAll"
         },
 
         "columns": [
             {
-                "data": "firstName", "width": "20%",
+                "data": "patient.firstName", "width": "3%",
                 "render": function (data, type, row) {
-                    return data + ' ' + row["lastName"] + '<br>' + row["email"];
+                    return data ;
                 }
             },
-
-            { "data": "phoneNo", "width": "15%" },
-            { "data": "address", "width": "15%" },
-            { "data": "gender", "width": "15%" },
             {
-                "data": "registeredDate",
+                "data": "patient.lastName", "width": "8%",
+                "render": function (data, type, row) {
+                    return data;
+                }
+            },
+            { "data": "patient.phoneNo", "width": "15%" },
+   
+            {
+                "data": "date",
                 "render": function (data) {
                     var date = new Date(data);
                     var month = date.getMonth() + 1;
                     return (month.toString().length > 1 ? month : "0" + month) + "/" + date.getDate() + "/" + date.getFullYear();
                 }
             },
+            { "data": "description", "width": "15%" },
+            { "data": "method", "width": "15%" },
+            { "data": "amount", "width": "15%" },
+            { "data": "paymentStatus", "width": "15%" },
             {
-                "data": "patientId",
+                "data": "paymentId",
                 "render": function (data) {
                     return `
                             <div class="w-80" role="group">
-								<a href="/Admin/Patient/Upsert?id=${data}" class="badge rounded-pill bg-primary"><i class="bi bi-pencil-square"></i></a>
-								<a onClick=Delete('/Admin/Patient/Delete/${data}') 
+								<a href="/Admin/Payment/Upsert?id=${data}" class="badge rounded-pill bg-primary"><i class="bi bi-pencil-square"></i></a>
+								<a onClick=Delete('/Admin/Payment/Delete/${data}') 
                                 class="badge rounded-pill bg-danger"><i class="bi bi-trash"></i></a> 
 							</div>
                            `

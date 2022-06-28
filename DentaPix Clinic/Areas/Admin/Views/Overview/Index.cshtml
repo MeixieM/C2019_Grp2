@@ -1,0 +1,52 @@
+﻿
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+	<div class="row pt-4">
+		<div class="col-6">
+			<h2 class="text-primary"><i class="bi bi-speedometer2"></i>&nbsp; dashboard overview</h2>
+		</div>
+</div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+				<canvas id="bar-chart" class="my-4 h-25"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6">
+      <div class="card-group">
+            <div class="card col-4 m-2 p-2">
+		         <h5 class="card-title">Total Patients All Time</h5>
+		         <h1 class="card-text">10</h1>
+            </div>
+            <div class="card col-4 m-2 p-2">
+		     <h5 class="card-title">Total Patients All Time</h5>
+		         <h1 class="card-text">10</h1>
+            </div>
+
+            <div class="card col-4 m-2 p-2">
+		       <h5 class="card-title">Total Patients All Time</h5>
+		         <h1 class="card-text">10</h1>
+            </div>
+      </div>
+</div>
+</div>
+    
+
+
+           
+
+
+@section Scripts{
+	<script src="~/js/overview.js"></script>
+}
