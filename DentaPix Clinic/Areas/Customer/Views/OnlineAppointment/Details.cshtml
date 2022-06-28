@@ -12,8 +12,10 @@
 		</div>
 		
 			<div class="mb-3 col-6">
-				@*<h5 class="text-muted">@Model.Appointment.FirstName</h5>*@
-@*				<h5 class="text-muted">@Model.Appointment.LastName</h5>
+			<input asp-for="@Model.Appointment.FirstName" class="form-control"/>
+
+				@*<h5 class="text-muted">@Model.Appointment.FirstName</h5>
+				<h5 class="text-muted">@Model.Appointment.LastName</h5>
 				<h5 class="text-muted">@Model.Appointment.NatureOfAppointment</h5>
 				<h5 class="text-muted">@Model.Appointment.AppointmentDate</h5>
 				<h5 class="text-muted">@Model.Appointment.Message</h5>
@@ -21,10 +23,10 @@
 			</div>  
 
 		  
-		<div class="col-12">
-			<a class="btn btn-link btn-outline-secondary" asp-area="Customer"  asp-controller="OnlineAppointment" asp-action="Details" style="text-decoration: none" >View Appointment</a>
+	@*	<div class="col-12">
+			<a class="btn btn-link btn-outline-secondary" asp-area="Customer"  asp-action="Details" style="text-decoration: none" >View Appointment</a>
 			<button type="submit"   class="btn btn-outline-primary" style="width: 150px">Submit</button>
-		</div>
+		</div>*@
 	</div>
 
 		</div>

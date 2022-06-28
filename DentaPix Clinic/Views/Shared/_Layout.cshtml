@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - DentaPix Clinic</title>
+    <title>@ViewData["Title"]  DentaPix Clinic</title>
     <link rel="stylesheet" href="~/css/bootswatchTheme.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
@@ -24,6 +24,12 @@
         <li class="nav-item">
             <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">HOME</a>
         </li>
+
+  @*     <li class="nav-item">
+            <a class="nav-link" asp-area="Customer" asp-controller="OnlineAppointment" asp-action="Details">MY APPOINTMENT</a>
+			<button type="submit"  asp-action="Details" class="btn btn-outline-primary" style="width: 150px" asp-route-appointmentId="AppointmentId">Details</button>
+        </li>*@
+
 
          <li class="nav-item">
             <a class="nav-link" >ABOUT</a>
@@ -46,6 +52,11 @@
             <div class="dropdown-divider"></div>
           </div>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+            <i class="bi bi-calendar-check"></i>
+            </a>
+        </li> 
       </ul>
             <partial name="_LoginPartial" />
 @*      <form class="d-flex">
