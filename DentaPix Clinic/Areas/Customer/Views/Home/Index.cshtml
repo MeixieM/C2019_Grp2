@@ -14,7 +14,9 @@
 </div>
 					
 <div class="caption text-center">
-	<h1>DENTAPIX <br /> DENTAL CLINIC</h1>
+	
+  <img src="~/assets/images/dp_logo_big.png" style="display: inline-block;">
+	<h1> DENTAL CLINIC</h1>
     <a class="btn btn-link btn-outline-primary" asp-area="Customer"  asp-controller="OnlineAppointment" asp-action="Insert" style="text-decoration: none" >BOOK NOW</a>
 
 </div>
@@ -23,7 +25,7 @@
 <section  class="bg-light text-dark p-5 text-center">
 		<div  class="container">
 	<div class="row pb-3">
-		<h1><b>Meet the team</b></h1>		
+		<h1 class="text-primary"><b>Meet the team</b></h1>		
 		<h2>that put the shine in your smile</h2>
 	@foreach(var doctor in Model)
 	{
@@ -55,52 +57,58 @@
 </section>
 
 
-@*Our Services*@
 <section  class="bg-light text-dark p-5 text-center">
-		<div  class="container">
-	<div class="row pb-3">
-		<h1><b>Our Services</b></h1>		
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-@*	@foreach(var doctor in Model)
-	{
-		<div class="col-lg-3 col-md-6">
-			<div class="row pd-2">
-				<div  class="col-12 p-1" style="border:1px solid #fff; border-radius: 5px">
-					<div class="card">
-						<img src="@doctor.ProfilePictureURL" class="card-img-top rounded"/>
-						<div class="card-body">
-						<div class="pl-1">
-							<p class="card-title h4 text-primary"><b>@doctor.FullName</b></p>
-							<p class="card-title h5 ">@doctor.Career</p>
-						</div>
-						<div class="pl-1">*@
-							@*<p class="card-title h5 ">@doctor.Interest</p>*@
-					@*	</div>
-						</div>
-							<a asp-action="Details" class="btn btn-outline-primary form-control" asp-route-id="@doctor.DoctorId">
-								Details
-							</a>
-					</div>
-				</div>
-			</div>	
-		</div>
-	}*@
+		<h1 class="text-primary"><b>Our Services</b></h1>		
+	<div class="row row-cols-2 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card p-2 ">
+      <img src="~/assets/images/Asset 5.png" class="rounded mx-auto d-block" style="width: 60px">
+      <div class="card-body">
+        <h5 class="card-title">Cosmetic & Restorative Dentistry</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card p-2 ">
+      <img src="~/assets/images/Asset 4.png" class="rounded mx-auto d-block" style="width: 60px">
+      <div class="card-body">
+        <h5 class="card-title">Implants & Surgery</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card p-2 ">
+      <img src="~/assets/images/Asset 6.png" class="rounded mx-auto d-block" style="width: 60px">
+      <div class="card-body">
+        <h5 class="card-title">Orthodontic Braces</h5>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+  <div class="card p-2 ">
+      <img src="~/assets/images/Asset 1.png" class="rounded mx-auto d-block" style="width: 60px">
+      <div class="card-body">
+        <h5 class="card-title">General Dentistry</h5>
+      </div>
+    </div>
+  </div>
+    <div class="col">
+   <div class="card p-2 ">
+      <img src="~/assets/images/Asset 3.png" class="rounded mx-auto d-block" style="width: 60px">
+      <div class="card-body">
+        <h5 class="card-title">3D & Digital Dentistry</h5>
+      </div>
+    </div>
+  </div>
+    <div class="col">
+   <div class="card p-2 ">
+      <img src="~/assets/images/Asset 2.png" class="rounded mx-auto d-block" style="width: 60px">
+      <div class="card-body">
+        <h5 class="card-title">Radiographic Dentistry</h5>
+      </div>
+    </div>
+  </div>
 
-	</div>
+
 </div>
 </section>
-

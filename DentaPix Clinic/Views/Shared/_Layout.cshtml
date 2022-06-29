@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using DentaPix_Clinic.Utility
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,17 +10,25 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">DCMS</a>
+
+ <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">
+  <img src="/assets/images/dp_logo.png" style="display: inline-block;">
+  <span style="display: inline-block;"></span>
+</a>
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarColor01">
+    <div class="collapse navbar-collapse " id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
             <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">HOME</a>
@@ -32,15 +41,17 @@
 
 
          <li class="nav-item">
-            <a class="nav-link" >ABOUT</a>
+            <a class="nav-link" asp-area="Customer" asp-controller="AboutUs" asp-action="Index">ABOUT US</a>
         </li>
-         <li class="nav-item">
+     @*    <li class="nav-item">
             <a class="nav-link" >SERVICES</a>
-        </li>
+        </li>*@
          <li class="nav-item">
             <a class="nav-link" asp-area="Customer" asp-controller="OnlineAppointment" asp-action="Insert">ONLINE APPOINTMENT</a>
         </li>
 
+         @if (User.IsInRole(SD.Role_Admin))
+            {
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">MANAGEMENT</a>
           <div class="dropdown-menu">   
@@ -55,11 +66,12 @@
 
           </div>
         </li>
-        <li class="nav-item">
+        }
+@*        <li class="nav-item">
             <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
             <i class="bi bi-calendar-check"></i>
             </a>
-        </li> 
+        </li> *@
       </ul>
             <partial name="_LoginPartial" />
 @*      <form class="d-flex">
