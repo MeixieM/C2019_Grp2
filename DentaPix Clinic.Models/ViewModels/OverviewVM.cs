@@ -18,6 +18,8 @@ namespace DentaPix_Clinic.Models.ViewModels
 
         public IEnumerable<SelectListItem> AppointmentList { get; set; }
 
+        public int patientTotal { get; set; }
+
 
     }
 }

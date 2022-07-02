@@ -15,9 +15,14 @@ namespace DentaPix_Clinic.Models
 
 
         public string? Method { get; set; }
+        [Display(Name = "Service Description")]
         public string? Description { get; set; }
         public double? Amount { get; set; }
+        [Display(Name = "Payments/Adjustments")]
+
         public double? Payments { get; set; }
+
+        [Display(Name = "Patient Balance")]
         public double? Balance { get; set; }
         public string? PaymentStatus { get; set; }
 

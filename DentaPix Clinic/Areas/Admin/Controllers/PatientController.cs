@@ -33,8 +33,10 @@ public class PatientController : Controller
             {
                 Text = i.FullName,
                 Value = i.DoctorId.ToString()
-            })
+
+            }),
         };
+
 
         if (id == null || id == 0)
         {

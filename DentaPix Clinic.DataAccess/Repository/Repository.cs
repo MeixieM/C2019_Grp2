@@ -4,6 +4,7 @@ using System.Linq.Expressions;
 
 namespace DentaPix_Clinic.DataAccess.Repository
 {
+
     public class Repository<T> : IRepository<T> where T : class
     {
 
@@ -64,5 +65,6 @@ namespace DentaPix_Clinic.DataAccess.Repository
         {
             dbSet.RemoveRange(entity);
         }
+
     }
 }
