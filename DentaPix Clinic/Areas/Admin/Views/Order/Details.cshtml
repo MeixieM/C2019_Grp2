@@ -9,10 +9,10 @@
 			<div class="card-header bg-dark text-light ml-0">
 				<div class="container row">
 					<div class="col-12 d-none d-md-block col-md-6 pb-1">
-						<i class="fas fa-shopping-cart"></i> &nbsp; Order Summary
+						<i class="fas fa-shopping-cart"></i> &nbsp; Summary
 					</div>
-					<div class="col-12 col-md-4 offset-md-2 text-right">
-						<a asp-action="Index" class="btn btn-outline-info form-control btn-sm">Back to Orders</a>
+						<div class="col-12 col-md-2 offset-md-4 text-right">
+						<a asp-action="Index" class="btn btn-outline-danger form-control btn-sm">Back</a>
 					</div>
 				</div>
 			</div>
@@ -22,7 +22,7 @@
 						<div class="col-12 col-lg-6 pb-4">
 							<div class="row">
 								<h4 class="d-flex justify-content-between align-items-center mb-3">
-									<span class="text-primary">PickUp Details:</span>
+									<span class="text-primary">Patient Details:</span>
 								</h4>
 							</div>
 							<div class="row my-1">
@@ -59,7 +59,7 @@
 
 
 							<div class="row my-1">
-								<div class="col-3">Phone</div>
+								<div class="col-3">Phone No.</div>
 								<div class="col-9">
 									@if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
 									{
@@ -96,7 +96,7 @@
 							</div>
 
 							<div class="row my-1">
-								<div class="col-3">Order Date</div>
+								<div class="col-3">Date</div>
 								<div class="col-9">
 
 									<input value="@Model.OrderHeader.OrderDate.ToShortDateString()" readonly type="text" class="form-control" />
@@ -104,7 +104,7 @@
 								</div>
 							</div>
 
-							<div class="row my-1">
+							@*<div class="row my-1">
 								<div class="col-3">Carrier</div>
 								<div class="col-9">
 									@if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
@@ -130,14 +130,14 @@
 										<input asp-for="OrderHeader.TrackingNumber" readonly type="text" class="form-control" />
 									}
 								</div>
-							</div>
-
+							</div>*@
+@*
 							<div class="row my-1">
 								<div class="col-3">Shipping Date</div>
 								<div class="col-9">
 									<input value="@Model.OrderHeader.ShippingDate.ToShortDateString()" type="text" readonly class="form-control" />
 								</div>
-							</div>
+							</div>*@
 
 
 							@if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
@@ -179,16 +179,16 @@
 									<input asp-for="OrderHeader.PaymentStatus" type="text" readonly class="form-control" />
 								</div>
 							</div>
-							<input type="submit" asp-action="UpdateOrderDetail" class="btn btn-outline-warning form-control my-1" value="Update Order Details" />
+							<input type="submit" asp-action="UpdateOrderDetail" class="btn btn-outline-warning form-control my-1" value="Update Patient Details" />
 
 
 
 						</div>
 						<div class="col-12 col-lg-5 offset-lg-1">
 							<h4 class="d-flex justify-content-between align-items-center mb-3">
-								<span class="text-primary">Order Summary</span>
+								<span class="text-primary">Payment Summary</span>
 							</h4>
-							<label class="badge bg-success form-control my-2">Order Status - @Model.OrderHeader.OrderStatus</label>
+							<label class="badge bg-success form-control my-2">Status - @Model.OrderHeader.OrderStatus</label>
 
 							<ul class="list-group mb-3">
 								@foreach (var detail in Model.OrderDetail)
@@ -232,14 +232,14 @@
 								if (Model.OrderHeader.OrderStatus == SD.StatusInProcess)
 								{
 									<input type="submit" onclick="return validateInput()"
-								   asp-action="ShipOrder" class="btn btn-outline-primary form-control my-1" value="Ship Order" />
+								   asp-action="ShipOrder" class="btn btn-outline-primary form-control my-1" value="Approve" />
 								}
 
 								@if (Model.OrderHeader.OrderStatus != SD.StatusRefunded &&
 										Model.OrderHeader.OrderStatus != SD.StatusCancelled &&
 										Model.OrderHeader.OrderStatus != SD.StatusShipped)
 								{
-									<input type="submit" asp-action="CancelOrder" class="btn btn-outline-danger form-control my-1" value="Cancel Order" />
+									<input type="submit" asp-action="CancelOrder" class="btn btn-outline-danger form-control my-1" value="Cancel" />
 								}
 							}
 						</div>
@@ -251,28 +251,3 @@
 </form>
 
 
-@*@section Scripts{
-	<partial name="_ValidationScriptsPartial" />
-	<script>
-		function validateInput() {
-			if (document.getElementById("trackingNumber").value == "") {
-				Swal.fire({
-					icon: 'error',
-					title: 'Oops...',
-					text: 'Please enter tracking number!',
-				});
-				return false;
-			}
-			if (document.getElementById("carrier").value == "") {
-				Swal.fire({
-					icon: 'error',
-					title: 'Oops...',
-					text: 'Please enter carrier!',
-				});
-				return false;
-			}
-			return true;
-		}
-	</script>
-
-}*@

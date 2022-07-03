@@ -188,7 +188,7 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
                         PriceData = new SessionLineItemPriceDataOptions
                         {
                             UnitAmount = (long)(item.Price * 100),//20.00 -> 2000
-                            Currency = "usd",
+                            Currency = "php",
                             ProductData = new SessionLineItemPriceDataProductDataOptions
                             {
                                 Name = item.Treatment.Name

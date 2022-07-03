@@ -67,7 +67,7 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
                     PriceData = new SessionLineItemPriceDataOptions
                     {
                         UnitAmount = (long)(item.Price * 100),//20.00 -> 2000
-                        Currency = "usd",
+                        Currency = "php",
                         ProductData = new SessionLineItemPriceDataProductDataOptions
                         {
                             Name = item.Treatment.Name
@@ -116,17 +116,17 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
             orderHeaderFromDb.PhoneNumber = OrderVM.OrderHeader.PhoneNumber;
             orderHeaderFromDb.Address = OrderVM.OrderHeader.Address;
 
-            if (OrderVM.OrderHeader.Carrier != null)
-            {
-                orderHeaderFromDb.Carrier = OrderVM.OrderHeader.Carrier;
-            }
-            if (OrderVM.OrderHeader.TrackingNumber != null)
-            {
-                orderHeaderFromDb.TrackingNumber = OrderVM.OrderHeader.TrackingNumber;
-            }
+            //if (OrderVM.OrderHeader.Carrier != null)
+            //{
+            //    orderHeaderFromDb.Carrier = OrderVM.OrderHeader.Carrier;
+            //}
+            //if (OrderVM.OrderHeader.TrackingNumber != null)
+            //{
+            //    orderHeaderFromDb.TrackingNumber = OrderVM.OrderHeader.TrackingNumber;
+            //}
             _unitOfWork.OrderHeader.Update(orderHeaderFromDb);
             _unitOfWork.Save();
-            TempData["Success"] = "Order Details Updated Successfully.";
+            TempData["Success"] = "Patient Details Updated Successfully.";
             return RedirectToAction("Details", "Order", new { orderId = orderHeaderFromDb.Id });
         }
 
@@ -137,7 +137,7 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
         {
             _unitOfWork.OrderHeader.UpdateStatus(OrderVM.OrderHeader.Id, SD.StatusInProcess);
             _unitOfWork.Save();
-            TempData["Success"] = "Order Status Updated Successfully.";
+            TempData["Success"] = "Payment Status Updated Successfully.";
             return RedirectToAction("Details", "Order", new { orderId = OrderVM.OrderHeader.Id });
         }
 
@@ -147,8 +147,8 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
         public IActionResult ShipOrder()
         {
             var orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id, tracked: false);
-            orderHeader.TrackingNumber = OrderVM.OrderHeader.TrackingNumber;
-            orderHeader.Carrier = OrderVM.OrderHeader.Carrier;
+            //orderHeader.TrackingNumber = OrderVM.OrderHeader.TrackingNumber;
+            //orderHeader.Carrier = OrderVM.OrderHeader.Carrier;
             orderHeader.OrderStatus = SD.StatusShipped;
             orderHeader.ShippingDate = DateTime.Now;
             if (orderHeader.PaymentStatus == SD.PaymentStatusDelayedPayment)
@@ -157,7 +157,7 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
             }
             _unitOfWork.OrderHeader.Update(orderHeader);
             _unitOfWork.Save();
-            TempData["Success"] = "Order Shipped Successfully.";
+            TempData["Success"] = "Paid Successfully.";
             return RedirectToAction("Details", "Order", new { orderId = OrderVM.OrderHeader.Id });
         }
 
@@ -186,7 +186,7 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
             }
             _unitOfWork.Save();
 
-            TempData["Success"] = "Order Cancelled Successfully.";
+            TempData["Success"] = "Cancelled Successfully.";
             return RedirectToAction("Details", "Order", new { orderId = OrderVM.OrderHeader.Id });
         }
 

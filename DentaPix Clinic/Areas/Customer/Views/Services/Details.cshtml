@@ -1,4 +1,5 @@
-﻿@model ShoppingCart
+﻿@using System.Globalization
+@model ShoppingCart
 
 <form method="post">
     <input hidden asp-for="TreatmentId" />
@@ -23,15 +24,15 @@
                             </div>
                             <div class="row text-center pl-2" style="color:maroon; font-weight:bold">
                                 <div class="p-1 col-2 bg-secondary">
-                                    <div>@Model.Treatment.TreatmentPrice.ToString("c")</div>
+                                    <div>@Model.Treatment.TreatmentPrice.ToString("C", CultureInfo.CreateSpecificCulture("fil-PH"))</div>
                                 </div>
                             </div>
                             <div class="row pl-2">
                                 <p class="text-secondary">@Html.Raw(Model.Treatment.Description)</p>
                             </div>
                             <div class="row pl-2">
-                                <div class="col-2 text-primary"><h4>Count</h4></div>
-                                <div class="col-10"><input asp-for="Count" class="form-control"  /></div>
+                                <div class="col-2 text-primary"><h5>Quantity</h5></div>
+                                <div class="col-4"><input asp-for="Count" class="form-control"  /></div>
                             </div>
                         </div>
                         <div class="col-12 col-lg-3 offset-lg-1 text-center">
@@ -42,11 +43,11 @@
             </div>
             <div class="card-footer">
                 <div class="row">
-                    <div class="col-12 col-md-6 pb-1">
-                        <a class="btn btn-outline-danger form-control " style="height:50px;" asp-action="Index">Back </a>
+                    <div class="col-6 col-md-2 pb-1">
+                        <a class="btn btn-outline-danger form-control " style="height:50px;" asp-action="Index">BACK</a>
                     </div>
-                    <div class="col-12 col-md-6 pb-1">
-                        <button type="submit" value="Add to Cart" class="btn btn-outline-primary form-control" style="height:50px;">Add to Cart</button>
+                    <div class="col-6 col-md-2 pb-1">
+                        <button type="submit" value="Add to Cart" class="btn btn-outline-primary form-control" style="height:50px;">ADD</button>
                     </div>
                 </div>
             </div>
