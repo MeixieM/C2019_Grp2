@@ -1,0 +1,82 @@
+﻿@{
+	var status = Context.Request.Query["status"];
+	var pending = "text-muted";
+	var inprocess = "text-muted";
+	var completed = "text-muted";
+	var approved = "text-muted";
+	var all = "text-muted";
+
+	switch (status)
+	{
+		case "pending":
+			pending = "active bg-primary text-white";
+			break;
+		case "inprocess":
+			inprocess = "active bg-primary text-white";
+			break;
+		case "completed":
+			completed = "active bg-primary text-white";
+			break;
+		case "approved":
+			approved = "active bg-primary text-white";
+			break;
+		default:
+			all = "active bg-primary text-white";
+			break;
+	}
+
+}
+<div class="p-3">
+	<div class="d-flex justify-content-between pt-4">
+		<div class="p-2">
+			<h2 class="text-primary">Order List</h2>
+		</div>
+		<div class="p-2">
+			<ul class="list-group list-group-horizontal-sm">
+				<a style="text-decoration:none;" asp-controller="Order"
+				   asp-action="Index" asp-route-status="inprocess">
+				<li class="list-group-item @inprocess">In Process</li>
+				</a>
+				<a style="text-decoration:none;" asp-controller="Order"
+				   asp-action="Index" asp-route-status="pending">
+				<li class="list-group-item @pending">Payment Pending</li>
+				</a>
+				<a style="text-decoration:none;" asp-controller="Order"
+				   asp-action="Index" asp-route-status="completed">
+				<li class="list-group-item @completed">Completed</li>
+				</a>
+				<a style="text-decoration:none;" asp-controller="Order"
+				   asp-action="Index" asp-route-status="approved">
+				<li class="list-group-item @approved">Approved</li>
+				</a>
+				<a style="text-decoration:none;" asp-controller="Order"
+				   asp-action="Index" asp-route-status="all">
+				<li class="list-group-item @all">All</li>
+				</a>
+			</ul>
+		</div>
+	</div>
+	<br /><br />
+
+
+	<table id="tblData" class="table table-bordered table-striped " style="width: 100%">
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Full Name</th>
+				<th>Email</th>
+				<th>Phone Number</th>
+				<th>Address</th>
+				<th>Status</th>
+				<th>Total</th>
+				<th>Actions</th>
+
+			</tr>
+		</thead>
+	</table>
+</div>
+
+
+@section Scripts{
+	<script src="~/js/order.js"></script>
+}

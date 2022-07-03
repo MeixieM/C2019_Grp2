@@ -2,124 +2,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"]  DentaPix Clinic</title>
-    <link rel="stylesheet" href="~/css/bootswatchTheme.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>@ViewData["Title"]  DentaPix Clinic</title>
+	<link rel="stylesheet" href="~/css/bootswatchTheme.css" />
+	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <div class="container-fluid">
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<div class="container-fluid">
 
- <a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">
-  <img src="/assets/images/dp_logo.png" style="display: inline-block;">
-  <span style="display: inline-block;"></span>
-</a>
+				<a class="navbar-brand" asp-area="Customer" asp-controller="Home" asp-action="Index">
+					<img src="/assets/images/dp_logo.png" style="display: inline-block;">
+					<span style="display: inline-block;"></span>
+				</a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
 
-    <div class="collapse navbar-collapse " id="navbarColor01">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">HOME</a>
-        </li>
+				<div class="collapse navbar-collapse " id="navbarColor01">
+					<ul class="navbar-nav me-auto">
+						<li class="nav-item">
+							<a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">HOME</a>
+						</li>
 
-  @*     <li class="nav-item">
-            <a class="nav-link" asp-area="Customer" asp-controller="OnlineAppointment" asp-action="Details">MY APPOINTMENT</a>
-			<button type="submit"  asp-action="Details" class="btn btn-outline-primary" style="width: 150px" asp-route-appointmentId="AppointmentId">Details</button>
-        </li>*@
+						@*     <li class="nav-item">
+						<a class="nav-link" asp-area="Customer" asp-controller="OnlineAppointment" asp-action="Details">MY APPOINTMENT</a>
+						<button type="submit"  asp-action="Details" class="btn btn-outline-primary" style="width: 150px" asp-route-appointmentId="AppointmentId">Details</button>
+						</li>*@
 
 
-         <li class="nav-item">
-            <a class="nav-link" asp-area="Customer" asp-controller="AboutUs" asp-action="Index">ABOUT US</a>
-        </li>
-     @*    <li class="nav-item">
-            <a class="nav-link" >SERVICES</a>
-        </li>*@
-         <li class="nav-item">
-            <a class="nav-link" asp-area="Customer" asp-controller="OnlineAppointment" asp-action="Insert">ONLINE APPOINTMENT</a>
-        </li>
-         <li class="nav-item">
-            <a class="nav-link" asp-area="Customer" asp-controller="Services" asp-action="Index">SERVICES</a>
-        </li>
+						<li class="nav-item">
+							<a class="nav-link" asp-area="Customer" asp-controller="AboutUs" asp-action="Index">ABOUT US</a>
+						</li>
+						@*    <li class="nav-item">
+						<a class="nav-link" >SERVICES</a>
+						</li>*@
+						<li class="nav-item">
+							<a class="nav-link" asp-area="Customer" asp-controller="OnlineAppointment" asp-action="Insert">ONLINE APPOINTMENT</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" asp-area="Customer" asp-controller="Services" asp-action="Index">SERVICES</a>
+						</li>
 
-         @if (User.IsInRole(SD.Role_Admin))
-            {
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">MANAGEMENT</a>
-          <div class="dropdown-menu">   
-             <a class="dropdown-item" asp-area="Admin" asp-controller="Overview" asp-action="Index">OVERVIEW</a>
-            <a class="dropdown-item" asp-area="Admin" asp-controller="Doctors" asp-action="Index">DOCTOR</a>
-            <a class="dropdown-item" asp-area="Admin" asp-controller="Patient" asp-action="Index">PATIENT</a>
-            <a class="dropdown-item" asp-area="Admin" asp-controller="Appointment" asp-action="Index">APPOINTMENT</a>
-            <a class="dropdown-item" asp-area="Admin" asp-controller="Treatment" asp-action="Index">TREATMENTS</a>
-            <a class="dropdown-item" asp-area="Admin" asp-controller="Payment" asp-action="Index">BILLING</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">CREATE USER</a>
+						@if (User.IsInRole(SD.Role_Admin))
+						{
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">MANAGEMENT</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" asp-area="Admin" asp-controller="Overview" asp-action="Index">OVERVIEW</a>
+									<a class="dropdown-item" asp-area="Admin" asp-controller="Doctors" asp-action="Index">DOCTOR</a>
+									<a class="dropdown-item" asp-area="Admin" asp-controller="Patient" asp-action="Index">PATIENT</a>
+									<a class="dropdown-item" asp-area="Admin" asp-controller="Appointment" asp-action="Index">APPOINTMENT</a>
+									<a class="dropdown-item" asp-area="Admin" asp-controller="Treatment" asp-action="Index">TREATMENTS</a>
+									<a class="dropdown-item" asp-area="Admin" asp-controller="Payment" asp-action="Index">BILLING</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">CREATE USER</a>
 
-          </div>
-        </li>
-        }
-        <li class="nav-item">
-            <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-            <i class="bi bi-cart"></i>
-            </a>
-        </li> 
-      </ul>
-            <partial name="_LoginPartial" />
-@*      <form class="d-flex">
-        <input class="form-control me-sm-2" type="text" placeholder="search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">search</button>
-      </form>*@
-    </div>
-  </div>
-</nav>
+								</div>
+							</li>
+						}
+						<li class="nav-item">
+							<a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">
+								Order
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+								<i class="bi bi-cart"></i>
+							</a>
+						</li>
+					</ul>
+					<partial name="_LoginPartial" />
+					@*      <form class="d-flex">
+					<input class="form-control me-sm-2" type="text" placeholder="search">
+					<button class="btn btn-secondary my-2 my-sm-0" type="submit">search</button>
+					</form>*@
+				</div>
+			</div>
+		</nav>
 
-    </header>
-    <div class="container-fluid p-0">
-        <main role="main" class="pb-5">
-            <partial name="_Notification" />
-            @RenderBody()
-        </main>
-    </div>
+	</header>
+	<div class="container-fluid p-0">
+		<main role="main" class="pb-5">
+			<partial name="_Notification" />
+			@RenderBody()
+		</main>
+	</div>
 
-    <footer class="footer text-muted mt-auto py-3 bg-light m-0">
-            <div class="container px-4 px-lg-5"><p class="m-0 text-center">&copy; 2022 - DentaPix Clinic. All Rights Reserved</p></div>
-    </footer>
+	<footer class="footer text-muted mt-auto py-3 bg-light m-0">
+		<div class="container px-4 px-lg-5"><p class="m-0 text-center">&copy; 2022 - DentaPix Clinic. All Rights Reserved</p></div>
+	</footer>
 
-    @* <footer class="text-muted pt-5 pb-4 text-white">
-        <div class="container text-center text-md-start">
-            <div class="row text-black-cennter text-md-start">
-                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
-                    <h5 class="text-uppercase mb-4 font-weight-bold text-warning">Company Name</h5>
-                    <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
-                    <a> &copy; 2022 - DentaPix Clinic. All Rights Reserved</a>
-                </div>
-                <div class="">
+	@* <footer class="text-muted pt-5 pb-4 text-white">
+	<div class="container text-center text-md-start">
+	<div class="row text-black-cennter text-md-start">
+	<div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+	<h5 class="text-uppercase mb-4 font-weight-bold text-warning">Company Name</h5>
+	<p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+	<a> &copy; 2022 - DentaPix Clinic. All Rights Reserved</a>
+	</div>
+	<div class="">
 
-                </div>
-        </div>
-        </div>
-    </footer>*@
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	</div>
+	</div>
+	</div>
+	</footer>*@
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script src="~/js/site.js" asp-append-version="true"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/o7q6m3wylikfs4r9of737pibnkupqay83dr5bw8m2z09snbh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+	<script src="https://cdn.tiny.cloud/1/o7q6m3wylikfs4r9of737pibnkupqay83dr5bw8m2z09snbh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
- 
