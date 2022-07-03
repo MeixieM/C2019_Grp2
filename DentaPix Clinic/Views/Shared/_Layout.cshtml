@@ -49,6 +49,9 @@
          <li class="nav-item">
             <a class="nav-link" asp-area="Customer" asp-controller="OnlineAppointment" asp-action="Insert">ONLINE APPOINTMENT</a>
         </li>
+         <li class="nav-item">
+            <a class="nav-link" asp-area="Customer" asp-controller="Services" asp-action="Index">SERVICES</a>
+        </li>
 
          @if (User.IsInRole(SD.Role_Admin))
             {
@@ -67,11 +70,11 @@
           </div>
         </li>
         }
-@*        <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-            <i class="bi bi-calendar-check"></i>
+            <i class="bi bi-cart"></i>
             </a>
-        </li> *@
+        </li> 
       </ul>
             <partial name="_LoginPartial" />
 @*      <form class="d-flex">

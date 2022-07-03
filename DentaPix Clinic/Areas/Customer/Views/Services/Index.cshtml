@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DentaPix_Clinic.Models.Treatment>
+
+
+<div class="row pb-3">
+	@foreach(var treatment in Model)
+	{
+		<div class="col-lg-3 col-md-6">
+			<div class="row p-2">
+				<div class="col-12 p-1" style="border:1px solid #008cba; border-radius: 5px;">
+					<div class="card">
+						<img src="@treatment.Image" class="card-img-top rounded"/>
+
+						<div class="card-body">
+						<div class="pl-1">
+							<p class="card-title h5 text-primary">@treatment.Name</p>
+							<p class="card-title text-info">@Html.Raw(treatment.Description)</p>
+						</div>
+						
+						<div class="pl-1">
+							<p>Price <b>₱@treatment.TreatmentPrice.ToString("0.00")</b></p>
+						</div>
+						</div>
+					</div>
+					<div>
+						<a asp-action="Details" class="btn btn-primary form-control" asp-route-treatmentId="@treatment.TreatmentId">
+							Details
+						</a>
+					</div>
+				</div> 
+			</div>
+		</div>
+	}
+</div>

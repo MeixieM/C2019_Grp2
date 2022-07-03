@@ -10,6 +10,9 @@
         IAppointmentCartRepository AppointmentCart { get; }
         IOverviewRepository Overview { get; }
         IPaymentRepository Payment { get; }
+        IShoppingCartRepository ShoppingCart { get; }
+        IOrderHeaderRepository OrderHeader { get; }
+        IOrderDetailRepository OrderDetail { get; }
         void Save();
     }
 }

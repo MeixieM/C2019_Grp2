@@ -1,62 +1,82 @@
-﻿
+﻿@using System.Globalization
+@model DentaPix_Clinic.Models.ViewModels.ShoppingCartVM
 
 <form method="post">
-    <br />
-    <div class="container">
-        <div class="card">
-            <div class="card-header bg-dark text-light ml-0">
-                <div class="row">
-                    <div class="col-6 pt-2">
-                        <i class="bi bi-calendar-check"></i> &nbsp;
-                        <b>Appointment Overview</b>
-                    </div>
-                 </div>
-             </div>
+	<br />
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-dark text-light ml-0">
+				<div class="row">
+					<div class="col-6  pt-2">
+						<i class="fa fa-shopping-cart"></i> &nbsp;
+						Shopping Cart
+					</div>
+					<div class="col-6 text-end">
+						<a asp-area="Customer" asp-controller="Services" asp-action="Index" class="btn btn-outline-info btn-sm">ADD MORE</a>
+					</div>
+				</div>
+			</div>
 
-     <div class="row mt-4">
-      <div class="col-sm-6">
-        <div class="card" >
-          <div class="card-body">
-            <h5 class="card-title"><strong>Patient Info</strong></h5>
-            <p class="card-text">NAME: </p>
-            <p class="card-text">EMAIL: </p>
-            <p class="card-text">PHONE NUMBER: </p>
-            <p class="card-text">BIRTH: </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title"><strong>Appointment Details</strong></h5>
-            <p class="card-text">Nature of Appointment</p>
-            <p class="card-text">Day, Date, at , Time</p>
-          </div>
-        </div>
-      </div>
+			<div class="card-body">
+				@foreach(var item in Model.ListCart){
+				<div class="row">
+					<div class="d-none d-lg-block col-lg-1 text-center py-2">
+						<img src="@item.Treatment.Image" class="rounded" width="100%" />
+					</div>
+					<div class="col-12 col-lg-6 pt-md-3">
+						<h5><strong>@item.Treatment.Name</strong></h5>
+						<p><small>@Html.Raw(item.Treatment.Description)</small></p>
+					</div>
+					<div class="col-12  col-lg-5 text-center row">
+						<div class="col-4 text-md-right pt-4">
+							<h6><strong>@item.Price.ToString("C", CultureInfo.CreateSpecificCulture("fil-PH"))
+								<span class="text-muted">&nbsp;x&nbsp;</span>@item.Count </strong></h6>
+						</div>
+						<div class="col-6 col-sm-4 col-lg-6 pt-2">
+							<div class="w-75 btn-group" role="group">
+								<a asp-action="plus" asp-route-cartId="@item.TreatmentId" class="btn btn-outline-primary">
+									<i class="bi bi-plus-square"></i>
+								</a> &nbsp;
+								<a asp-action="minus" asp-route-cartId="@item.TreatmentId" class="btn btn-outline-warning">
+									<i class="bi bi-dash-square"></i>
+								</a>
+							</div>
 
-      <div class="card-footer">
-          <div class="card-footer row">
-              <div class="col-sm-12 col-lg-4 col-md-6 offset-lg-11 offset-md-6 ">
-          
-                    <a  class="btn btn-link btn-outline-danger" style="text-decoration: none">Cancel</a>
-              </div>
-          </div>
-      </div>
+						</div>
+						<div class="col-2 col-sm-4 col-lg-2 text-right pt-2">
+							<a asp-action="remove" asp-route-cartId="@item.TreatmentId" class="btn btn-outline-danger">
+								<i class="bi bi-trash-fill"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<hr />
+				}
+				<div class="row">
+					<div class="col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8 pr-4">
+						<ul class="list-group">
+							<li class="list-group-item d-flex justify-content-between bg-light">
+								<span class="text-info"> TOTAL (PHP)</span>
+								<strong class="text-info">@Model.OrderHeader.OrderTotal.ToString("C", CultureInfo.CreateSpecificCulture("fil-PH"))</strong>
+							</li>
+						</ul>
+					</div>
+				</div>
 
-    </div>
+			</div>
 
-
-
-
-
-
-
-
-
-
-        </div>
-         </div>
-
-
+			<div class="card-footer">
+				<div class="card-footer row">
+					<div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6 ">
+						<a asp-action="Summary" class="btn btn-outline-success form-control">Summary</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </form>
+
+
+
+
+

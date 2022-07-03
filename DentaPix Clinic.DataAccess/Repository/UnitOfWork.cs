@@ -16,6 +16,9 @@ namespace DentaPix_Clinic.DataAccess.Repository
             AppointmentCart = new AppointmentCartRepository(_db);
             Overview = new OverviewRepository(_db);
             Payment = new PaymentRepository(_db);
+            ShoppingCart = new ShoppingCartRepository(_db);
+            OrderHeader = new OrderHeaderRepository(_db);
+            OrderDetail = new OrderDetailRepository(_db);
         }
         public IDoctorRepository Doctor { get; private set; }
         public IPatientRepository Patient { get; private set; }
@@ -25,6 +28,9 @@ namespace DentaPix_Clinic.DataAccess.Repository
         public IAppointmentCartRepository AppointmentCart { get; private set; }
         public IOverviewRepository Overview { get; private set; }
         public IPaymentRepository Payment { get; private set; }
+        public IShoppingCartRepository ShoppingCart { get; private set; }
+        public IOrderHeaderRepository OrderHeader { get; private set; }
+        public IOrderDetailRepository OrderDetail { get; private set; }
 
 
         public void Save()
