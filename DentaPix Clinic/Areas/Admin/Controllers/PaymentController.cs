@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace DentaPix_Clinic.Areas.Admin.Controllers;
 [Area("Admin")]
 
+
+
 public class PaymentController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;

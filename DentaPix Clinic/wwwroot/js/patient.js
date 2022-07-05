@@ -1,7 +1,9 @@
 ﻿var dataTable;
 
 $(document).ready(function () {
+
     loadDataTable();
+
 
 
 });
@@ -12,10 +14,10 @@ $(document).ready(function () {
 function loadDataTable() {
 
     dataTable = $('#tblData').DataTable({
+
         "ajax": {
             "url": "/Admin/Patient/GetAll"
         },
-
         "columns": [
             {
                 "data": "firstName", "width": "20%",
@@ -48,6 +50,29 @@ function loadDataTable() {
                 },
                 "width": "15% "
             }
+
+        ],
+        "dom": 'lBfrtip',
+        "buttons": [
+
+            {
+                extend: 'print', exportOptions:
+                    { columns: ':visible' }
+            },
+            {
+                extend: 'copy', exportOptions:
+                    { columns: [0, ':visible'] }
+            },
+            {
+                extend: 'excel', exportOptions:
+                    { columns: ':visible' }
+            },
+            {
+                extend: 'pdf', exportOptions:
+                    { columns: [0, 1, 2, 3, 4] }
+            },
+            { extend: 'colvis', postfixButtons: ['colvisRestore'] }
+
 
         ]
     });

@@ -58,8 +58,8 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
             if (cart.Count <= 1)
             {
                 _unitOfWork.ShoppingCart.Remove(cart);
-                //var count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count - 1;
-                //HttpContext.Session.SetInt32(SD.SessionCart, count);
+                var count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count - 1;
+                HttpContext.Session.SetInt32(SD.SessionCart, count);
             }
             else
             {
@@ -74,8 +74,8 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
             var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.TreatmentId == cartId);
             _unitOfWork.ShoppingCart.Remove(cart);
             _unitOfWork.Save();
-            //var count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count;
-            //HttpContext.Session.SetInt32(SD.SessionCart, count);
+            var count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count;
+            HttpContext.Session.SetInt32(SD.SessionCart, count);
             return RedirectToAction(nameof(Index));
         }
 
@@ -232,7 +232,7 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
             }
             //_emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "New Order - Bulky Book", "<p>New Order Created</p>");
 
-
+            HttpContext.Session.Clear();
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId ==
             orderHeader.ApplicationUserId).ToList();
             _unitOfWork.ShoppingCart.RemoveRange(shoppingCarts);

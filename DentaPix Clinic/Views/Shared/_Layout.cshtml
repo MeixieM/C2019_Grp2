@@ -1,4 +1,9 @@
 ﻿@using DentaPix_Clinic.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +58,7 @@
 							<a class="nav-link" asp-area="Customer" asp-controller="Services" asp-action="Index">SERVICES</a>
 						</li>
 
-						@if (User.IsInRole(SD.Role_Admin))
+						@if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_User_Doc))
 						{
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">MANAGEMENT</a>
@@ -66,20 +71,24 @@
 									<a class="dropdown-item" asp-area="Admin" asp-controller="Payment" asp-action="Index">BILLING</a>
 									<div class="dropdown-divider"></div>
 									<a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">CREATE USER</a>
-
 								</div>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">
+									PAYMENT MANAGEMENT
+								</a>
+							</li>
 						}
-						<li class="nav-item">
-							<a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">
-								PAYMENT MANAGEMENT
-							</a>
-						</li>
+
 						<li class="nav-item">
 							<a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-								<i class="bi bi-cart"></i>
+								@await Component.InvokeAsync("TreatmentCart")
+
 							</a>
 						</li>
+
+
+
 					</ul>
 					<partial name="_LoginPartial" />
 					@*      <form class="d-flex">
@@ -124,6 +133,26 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 	<script src="https://cdn.tiny.cloud/1/o7q6m3wylikfs4r9of737pibnkupqay83dr5bw8m2z09snbh/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js" integrity="sha512-sW/w8s4RWTdFFSduOTGtk4isV1+190E/GghVffMA9XczdJ2MDzSzLEubKAs5h0wzgSJOQTRYyaz73L3d6RtJSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables-buttons/2.2.3/js/dataTables.buttons.min.js" integrity="sha512-QT3oEXamRhx0x+SRDcgisygyWze0UicgNLFM9Dj5QfJuu2TVyw7xRQfmB0g7Z5/TgCdYKNW15QumLBGWoPefYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="//cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+
+
+	<script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.js"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+
+	<link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.css" rel="stylesheet" type="text/css" />
+	<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
+
+
+
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

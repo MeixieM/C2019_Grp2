@@ -1,10 +1,14 @@
 ﻿using DentaPix_Clinic.DataAccess.Repository.IRepository;
 using DentaPix_Clinic.Models.ViewModels;
+using DentaPix_Clinic.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DentaPix_Clinic.Areas.Admin.Controllers;
 [Area("Admin")]
+[Authorize(Roles = SD.Role_Admin)]
+
 
 public class PatientController : Controller
 {
