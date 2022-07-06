@@ -20,8 +20,6 @@ namespace DentaPix_Clinic.Models
         public string? OrderStatus { get; set; }
         public string? PaymentStatus { get; set; }
 
-        //public string? TrackingNumber { get; set; }
-        //public string? Carrier { get; set; }
 
 
         public DateTime PaymentDate { get; set; }
