@@ -230,7 +230,7 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
                     _unitOfWork.Save();
                 }
             }
-            //_emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "New Order - Bulky Book", "<p>New Order Created</p>");
+
 
             HttpContext.Session.Clear();
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId ==

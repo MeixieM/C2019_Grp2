@@ -5,11 +5,11 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DentaPix Clinic", "DentaPix Clinic\DentaPix Clinic.csproj", "{DBB39CE3-84AA-4F0F-B949-E9897880ED89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DentaPix Clinic.DataAccess", "DentaPix Clinic.DataAccess\DentaPix Clinic.DataAccess.csproj", "{1C7AD2F0-1BA4-4320-BC3E-F29434AD44F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DentaPix Clinic.DataAccess", "DentaPix Clinic.DataAccess\DentaPix Clinic.DataAccess.csproj", "{1C7AD2F0-1BA4-4320-BC3E-F29434AD44F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DentaPix Clinic.Models", "DentaPix Clinic.Models\DentaPix Clinic.Models.csproj", "{A523753D-B810-4B77-89C2-60B482153460}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DentaPix Clinic.Models", "DentaPix Clinic.Models\DentaPix Clinic.Models.csproj", "{A523753D-B810-4B77-89C2-60B482153460}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DentaPix Clinic.Utility", "DentaPix Clinic.Utility\DentaPix Clinic.Utility.csproj", "{942D04B9-BEA7-4EEA-956F-39D2082F135E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DentaPix Clinic.Utility", "DentaPix Clinic.Utility\DentaPix Clinic.Utility.csproj", "{942D04B9-BEA7-4EEA-956F-39D2082F135E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

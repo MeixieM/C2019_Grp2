@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DentaPix Clinic.Models\DentaPix Clinic.Models.csproj" />
+    <ProjectReference Include="..\DentaPix Clinic.Utility\DentaPix Clinic.Utility.csproj" />
   </ItemGroup>
 
 </Project>
