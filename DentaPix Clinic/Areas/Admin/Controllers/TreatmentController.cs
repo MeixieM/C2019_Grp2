@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DentaPix_Clinic.Areas.Admin.Controllers;
+
 [Area("Admin")]
 [Authorize(Roles = SD.Role_Admin)]
-
 public class TreatmentController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -24,7 +24,6 @@ public class TreatmentController : Controller
         return View();
     }
 
-
     //GET
     public IActionResult Upsert(int? id)
     {
@@ -32,7 +31,6 @@ public class TreatmentController : Controller
 
         if (id == null || id == 0)
         {
-
             return View(treatment);
         }
         else
@@ -40,7 +38,6 @@ public class TreatmentController : Controller
             treatment = _unitOfWork.Treatment.GetFirstOrDefault(u => u.TreatmentId == id);
             return View(treatment);
         }
-
     }
 
     //POST
@@ -76,7 +73,6 @@ public class TreatmentController : Controller
             if (obj.TreatmentId == 0)
             {
                 _unitOfWork.Treatment.Add(obj);
-
             }
             else
             {
@@ -91,12 +87,12 @@ public class TreatmentController : Controller
     }
 
     #region API CALLS
+
     [HttpGet]
     public IActionResult GetAll()
     {
         var treatmentList = _unitOfWork.Treatment.GetAll();
         return Json(new { data = treatmentList });
-
     }
 
     //POST
@@ -119,9 +115,7 @@ public class TreatmentController : Controller
         _unitOfWork.Treatment.Remove(obj);
         _unitOfWork.Save();
         return Json(new { success = true, message = "Delete Successful" });
-
     }
 
-    #endregion
+    #endregion API CALLS
 }
-

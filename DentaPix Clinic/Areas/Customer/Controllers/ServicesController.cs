@@ -26,7 +26,6 @@ public class ServicesController : Controller
         return View(treatmentList);
     }
 
-
     //GET
     public IActionResult Details(int treatmentId)
     {
@@ -40,7 +39,6 @@ public class ServicesController : Controller
         return View(cartObj);
     }
 
-
     //POST
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -51,14 +49,11 @@ public class ServicesController : Controller
         var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
         shoppingCart.ApplicationUserId = claim.Value;
 
-
         ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.GetFirstOrDefault(
             u => u.ApplicationUserId == claim.Value && u.TreatmentId == shoppingCart.TreatmentId);
 
-
         if (cartFromDb == null)
         {
-
             _unitOfWork.ShoppingCart.Add(shoppingCart);
             _unitOfWork.Save();
             HttpContext.Session.SetInt32(SD.SessionCart,
@@ -70,14 +65,6 @@ public class ServicesController : Controller
             _unitOfWork.Save();
         }
 
-
         return RedirectToAction(nameof(Index));
     }
-
-
-
-
-
-
-
 }

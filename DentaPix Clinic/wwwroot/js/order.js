@@ -26,7 +26,6 @@ $(document).ready(function () {
 });
 
 function loadDataTable(status) {
-
     dataTable = $('#tblData').DataTable({
         "ajax": {
             "url": "/Admin/Order/GetAll?status=" + status
@@ -52,7 +51,7 @@ function loadDataTable(status) {
                     return `
                             <div class="w-80" role="group">
 								<a href="/Admin/Order/Details?orderId=${data}" class="badge rounded-pill bg-primary"><i class="bi bi-pencil-square"></i></a>
-								
+
 							</div>
                            `
                 },

@@ -6,6 +6,7 @@ namespace DentaPix_Clinic.DataAccess.Repository
     public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUserRepository
     {
         private AppDbContext _db;
+
         public ApplicationUserRepository(AppDbContext db) : base(db)
         {
             _db = db;
@@ -15,7 +16,5 @@ namespace DentaPix_Clinic.DataAccess.Repository
         {
             _db.SaveChanges();
         }
-
-
     }
 }

@@ -6,9 +6,10 @@ namespace DentaPix_Clinic.Data.Enums
     {
         Booked = 1,
         Completed,
+
         [Display(Name = "In Process")]
         InProcess,
-        Canceled
 
+        Canceled
     }
 }

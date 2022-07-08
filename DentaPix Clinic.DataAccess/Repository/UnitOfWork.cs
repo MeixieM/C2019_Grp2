@@ -5,6 +5,7 @@ namespace DentaPix_Clinic.DataAccess.Repository
     public class UnitOfWork : IUnitOfWork
     {
         private AppDbContext _db;
+
         public UnitOfWork(AppDbContext db)
         {
             _db = db;
@@ -20,6 +21,7 @@ namespace DentaPix_Clinic.DataAccess.Repository
             OrderHeader = new OrderHeaderRepository(_db);
             OrderDetail = new OrderDetailRepository(_db);
         }
+
         public IDoctorRepository Doctor { get; private set; }
         public IPatientRepository Patient { get; private set; }
         public IAppointmentRepository Appointment { get; private set; }
@@ -31,7 +33,6 @@ namespace DentaPix_Clinic.DataAccess.Repository
         public IShoppingCartRepository ShoppingCart { get; private set; }
         public IOrderHeaderRepository OrderHeader { get; private set; }
         public IOrderDetailRepository OrderDetail { get; private set; }
-
 
         public void Save()
         {

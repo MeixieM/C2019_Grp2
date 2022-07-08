@@ -6,6 +6,7 @@ namespace DentaPix_Clinic.DataAccess.Repository
     public class TreatmentRepository : Repository<Treatment>, ITreatmentRepository
     {
         private AppDbContext _db;
+
         public TreatmentRepository(AppDbContext db) : base(db)
         {
             _db = db;
@@ -30,8 +31,6 @@ namespace DentaPix_Clinic.DataAccess.Repository
                     objFromDb.Image = obj.Image;
                 }
             }
-
         }
-
     }
 }

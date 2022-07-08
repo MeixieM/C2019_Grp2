@@ -2,14 +2,9 @@
 
 $(document).ready(function () {
     loadDataTable();
-
-
 });
 
-
-
 function loadDataTable() {
-
     dataTable = $('#tblData').DataTable({
         "ajax": {
             "url": "/Admin/Payment/GetAll"
@@ -29,7 +24,7 @@ function loadDataTable() {
                 }
             },
             { "data": "patient.phoneNo", "width": "15%" },
-   
+
             {
                 "data": "date",
                 "render": function (data) {
@@ -48,8 +43,8 @@ function loadDataTable() {
                     return `
                             <div class="w-80" role="group">
 								<a href="/Admin/Payment/Upsert?id=${data}" class="badge rounded-pill bg-primary"><i class="bi bi-pencil-square"></i></a>
-								<a onClick=Delete('/Admin/Payment/Delete/${data}') 
-                                class="badge rounded-pill bg-danger"><i class="bi bi-trash"></i></a> 
+								<a onClick=Delete('/Admin/Payment/Delete/${data}')
+                                class="badge rounded-pill bg-danger"><i class="bi bi-trash"></i></a>
 							</div>
                            `
                 },

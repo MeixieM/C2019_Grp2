@@ -58,8 +58,8 @@ function loadDataTable() {
                     return `
                             <div class="w-80" role="group">
 								<a href="/Admin/Appointment/Upsert?id=${data}" class="badge rounded-pill bg-primary"><i class="bi bi-pencil-square"></i></a>
-								<a onClick=Delete('/Admin/Appointment/Delete/${data}') 
-                                class="badge rounded-pill bg-danger"><i class="bi bi-trash"></i></a> 
+								<a onClick=Delete('/Admin/Appointment/Delete/${data}')
+                                class="badge rounded-pill bg-danger"><i class="bi bi-trash"></i></a>
 							</div>
                            `
                 },

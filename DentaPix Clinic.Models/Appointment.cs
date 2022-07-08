@@ -11,32 +11,30 @@ namespace DentaPix_Clinic.Models
         [Required]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
+
         [Required]
         [Display(Name = "Last Name")]
-
         public string LastName { get; set; }
+
         [Required]
         [Display(Name = "Email")]
-
         public string Email { get; set; }
+
         [Required]
         [Display(Name = "Mobile Number")]
-
         public string MobileNo { get; set; }
 
         [Required(ErrorMessage = "Please set date and time ")]
-
         [Display(Name = "Appointment Date and Time")]
         public DateTime AppointmentDate { get; set; }
+
         [Required]
-
-
         public string? NatureOfAppointment { get; set; }
-
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{MM/dd/yyyy}")]
         public DateTime Birthday { get; set; }
+
         public string? Message { get; set; }
         public DateTime RegisteredDate { get; set; } = DateTime.Now;
 
@@ -57,7 +55,5 @@ namespace DentaPix_Clinic.Models
         //[ValidateNever]
 
         //public Patient Patient { get; set; }
-
-
     }
 }

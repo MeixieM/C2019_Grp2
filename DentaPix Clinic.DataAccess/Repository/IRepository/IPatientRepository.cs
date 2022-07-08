@@ -6,5 +6,4 @@ namespace DentaPix_Clinic.DataAccess.Repository.IRepository
     {
         void Update(Patient obj);
     }
-
 }

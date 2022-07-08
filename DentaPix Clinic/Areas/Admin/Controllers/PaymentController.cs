@@ -4,10 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DentaPix_Clinic.Areas.Admin.Controllers;
+
 [Area("Admin")]
-
-
-
 public class PaymentController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -21,7 +19,6 @@ public class PaymentController : Controller
     {
         return View();
     }
-
 
     //GET
     public IActionResult Upsert(int? id)
@@ -39,13 +36,10 @@ public class PaymentController : Controller
                 Text = i.Name + "   ₱" + i.TreatmentPrice,
                 Value = i.TreatmentId.ToString()
             }),
-
-
         };
 
         if (id == null || id == 0)
         {
-
             return View(paymentVM);
         }
         else
@@ -53,7 +47,6 @@ public class PaymentController : Controller
             paymentVM.Payment = _unitOfWork.Payment.GetFirstOrDefault(u => u.PaymentId == id);
             return View(paymentVM);
         }
-
     }
 
     //POST
@@ -63,12 +56,10 @@ public class PaymentController : Controller
     {
         if (ModelState.IsValid)
         {
-
             if (obj.Payment.PaymentId == 0)
             {
                 _unitOfWork.Payment.Add(obj.Payment);
                 TempData["success"] = "Payment created successfully";
-
             }
             else
             {
@@ -83,12 +74,12 @@ public class PaymentController : Controller
     }
 
     #region API CALLS
+
     [HttpGet]
     public IActionResult GetAll()
     {
         var paymentList = _unitOfWork.Payment.GetAll(includeProperties: "Patient,Treatment");
         return Json(new { data = paymentList });
-
     }
 
     //POST
@@ -102,13 +93,10 @@ public class PaymentController : Controller
             return Json(new { success = false, message = "Error while deleting" });
         }
 
-
         _unitOfWork.Payment.Remove(obj);
         _unitOfWork.Save();
         return Json(new { success = true, message = "Delete Successful" });
-
     }
 
-    #endregion
+    #endregion API CALLS
 }
-

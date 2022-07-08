@@ -1,11 +1,11 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
@@ -18,15 +18,13 @@ body {
     margin-bottom: 60px;
 }
 
-
-
 /*ADDED*/
 /*video {*/
-    /*  min-width: 100vw;
+/*  min-width: 100vw;
     min-height: 100vh;
     object-fit: cover;*/
 
-    /*-webkit-filter: grayscale(100%);  
+/*-webkit-filter: grayscale(100%);
     filter: grayscale(20%);
 
     position: absolute;
@@ -62,7 +60,7 @@ body {
     background-color: rgba(0,0,0,0.5);
 }
 
-.caption  {
+.caption {
     position: absolute;
     top: 10%;
     width: 100%;
@@ -83,38 +81,36 @@ body {
     border-width: medium;
     border-radius: 0;
     font-size: 1.1rem;
-    padding: .6rem  1.3rem;
+    padding: .6rem 1.3rem;
 }
 
 /*--- Bootstrap Mobile Gutter Fix --*/
-    .row, .container-fluid {
+.row, .container-fluid {
     margin-left: 0px !important;
     margin-right: 0px !important;
 }
 
-@media (max-width: 768px){
-.caption {
-    position: absolute;
-    top: 15%;
-    width: 100%;
-}
-
-    .caption h1 {
-        color: #fff;
-        font-size: 4rem;
-        letter-spacing: .15rem;
-        padding-bottom: .1rem;
-        font-family: 'Lato', sans-serif;
+@media (max-width: 768px) {
+    .caption {
+        position: absolute;
+        top: 15%;
+        width: 100%;
     }
 
-.btn-lg {
-    color: black;
-    font-size: 1rem;
-    padding: .5rem 1rem;
-}
+        .caption h1 {
+            color: #fff;
+            font-size: 4rem;
+            letter-spacing: .15rem;
+            padding-bottom: .1rem;
+            font-family: 'Lato', sans-serif;
+        }
 
+    .btn-lg {
+        color: black;
+        font-size: 1rem;
+        padding: .5rem 1rem;
+    }
 }
-
 
 /*--- Fixed Video Background iOS/Mobile Style--*/
 .video-wrap {
@@ -139,8 +135,6 @@ body {
     transform: translateZ(0);
     will-change: transform;
     z-index: -1000;
-
-
 }
 
 video {

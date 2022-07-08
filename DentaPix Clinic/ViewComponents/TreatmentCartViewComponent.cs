@@ -8,6 +8,7 @@ namespace DentaPix_Clinic.ViewComponents
     public class TreatmentCartViewComponent : ViewComponent
     {
         private readonly IUnitOfWork _unitOfWork;
+
         public TreatmentCartViewComponent(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

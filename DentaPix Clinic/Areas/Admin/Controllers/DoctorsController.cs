@@ -5,11 +5,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DentaPix_Clinic.Areas.Admin.Controllers;
+
 [Area("Admin")]
-
 [Authorize(Roles = SD.Role_Admin)]
-
-
 public class DoctorsController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -24,7 +22,6 @@ public class DoctorsController : Controller
         IEnumerable<Doctor> objDoctorList = _unitOfWork.Doctor.GetAll();
         return View(objDoctorList);
     }
-
 
     //GET
     public IActionResult Create()
@@ -50,7 +47,6 @@ public class DoctorsController : Controller
         }
         return View(obj);
     }
-
 
     //GET
     public IActionResult Edit(int? id)
@@ -88,7 +84,6 @@ public class DoctorsController : Controller
         return View(obj);
     }
 
-
     ////GET
     //public IActionResult Details(int? id)
     //{
@@ -123,7 +118,6 @@ public class DoctorsController : Controller
     //    return View(obj);
     //}
 
-
     //GET
     public IActionResult Delete(int? id)
     {
@@ -132,7 +126,6 @@ public class DoctorsController : Controller
             return NotFound();
         }
         var doctorFromDb = _unitOfWork.Doctor.GetFirstOrDefault(u => u.DoctorId == id);
-
 
         if (doctorFromDb == null)
         {

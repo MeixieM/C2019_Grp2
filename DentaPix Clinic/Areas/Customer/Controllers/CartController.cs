@@ -16,7 +16,6 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
         private readonly IUnitOfWork _unitOfWork;
 
         [BindProperty]
-
         public ShoppingCartVM ShoppingCartVM { get; set; }
 
         public CartController(IUnitOfWork unitOfWork)
@@ -79,8 +78,6 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
-
         public IActionResult Summary()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -100,16 +97,12 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
             ShoppingCartVM.OrderHeader.Address = ShoppingCartVM.OrderHeader.ApplicationUser.Address;
             ShoppingCartVM.OrderHeader.PhoneNumber = ShoppingCartVM.OrderHeader.ApplicationUser.PhoneNumber;
 
-
-
-
             foreach (var cart in ShoppingCartVM.ListCart)
             {
                 cart.Price = GetPriceBasedOnQuantity(cart.Count, cart.Treatment.TreatmentPrice);
                 ShoppingCartVM.OrderHeader.OrderTotal += (cart.Price * cart.Count);
             }
             return View(ShoppingCartVM);
-
         }
 
         [HttpPost]
@@ -123,10 +116,8 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
             ShoppingCartVM.ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
                 includeProperties: "Treatment");
 
-
             ShoppingCartVM.OrderHeader.OrderDate = System.DateTime.Now;
             ShoppingCartVM.OrderHeader.ApplicationUserId = claim.Value;
-
 
             foreach (var cart in ShoppingCartVM.ListCart)
             {
@@ -160,13 +151,11 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
                 };
                 _unitOfWork.OrderDetail.Add(orderDetail);
                 _unitOfWork.Save();
-
             }
-
 
             if (applicationUser.DoctorId.GetValueOrDefault() == 0)
             {
-                //stripe settings 
+                //stripe settings
                 var domain = "https://localhost:44331/";
                 var options = new SessionCreateOptions
                 {
@@ -182,7 +171,6 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
 
                 foreach (var item in ShoppingCartVM.ListCart)
                 {
-
                     var sessionLineItem = new SessionLineItemOptions
                     {
                         PriceData = new SessionLineItemPriceDataOptions
@@ -193,12 +181,10 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
                             {
                                 Name = item.Treatment.Name
                             },
-
                         },
                         Quantity = item.Count,
                     };
                     options.LineItems.Add(sessionLineItem);
-
                 }
 
                 var service = new SessionService();
@@ -231,7 +217,6 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
                 }
             }
 
-
             HttpContext.Session.Clear();
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId ==
             orderHeader.ApplicationUserId).ToList();
@@ -239,7 +224,6 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
             _unitOfWork.Save();
             return View(id);
         }
-
 
         private double GetPriceBasedOnQuantity(double quantity, double price)
         {
@@ -250,11 +234,7 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers
             else
             {
                 return price;
-
             }
-
-
         }
-
     }
 }

@@ -12,7 +12,6 @@ namespace DentaPix_Clinic.DataAccess.Repository
             _db = db;
         }
 
-
         public void Update(OrderHeader obj)
         {
             _db.OrderHeaders.Update(obj);

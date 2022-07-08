@@ -7,8 +7,10 @@ namespace DentaPix_Clinic.Models
     {
         [Key]
         public int DoctorId { get; set; }
+
         [Display(Name = "Profile Picture URL")]
         public string ProfilePictureURL { get; set; }
+
         [Required]
         [Display(Name = "Full Name")]
         public string FullName { get; set; }
@@ -18,9 +20,8 @@ namespace DentaPix_Clinic.Models
 
         [Display(Name = "Interest")]
         public string Interest { get; set; }
+
         [ValidateNever]
-
         public List<Patient> Patients { get; set; }
-
     }
 }

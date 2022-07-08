@@ -8,14 +8,12 @@ namespace DentaPix_Clinic.Areas.Customer.Controllers;
 [Area("Customer")]
 public class OnlineAppointmentController : Controller
 {
-
     private readonly IUnitOfWork _unitOfWork;
 
     public OnlineAppointmentController(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
     }
-
 
     //GET
     //public IActionResult Details(int appointmentId)
@@ -54,7 +52,6 @@ public class OnlineAppointmentController : Controller
 
     //    if (id == null || id == 0)
     //    {
-
     //        return View(appointment);
     //    }
     //    else
@@ -71,10 +68,8 @@ public class OnlineAppointmentController : Controller
 
     //public IActionResult Insert(Appointment obj)
     //{
-
     //    if (ModelState.IsValid)
     //    {
-
     //        if (obj.AppointmentId == 0)
     //        {
     //            _unitOfWork.Appointment.Add(obj);
@@ -88,30 +83,22 @@ public class OnlineAppointmentController : Controller
     //    return View(obj);
     //}
 
-
     // GET
     public IActionResult Insert(int? id)
     {
-
         Appointment appointment = new();
         {
             if (id == null || id == 0)
             {
-
                 return View(appointment);
-
             }
             else
             {
                 appointment = _unitOfWork.Appointment.GetFirstOrDefault(u => u.AppointmentId == id);
                 return View(appointment);
             }
-
         }
-
     }
-
-
 
     //POST
     [HttpPost]
@@ -121,12 +108,10 @@ public class OnlineAppointmentController : Controller
     {
         if (ModelState.IsValid)
         {
-
             if (obj.AppointmentId == 0)
             {
                 _unitOfWork.Appointment.Add(obj);
                 TempData["success"] = "Appointment created successfully";
-
             }
 
             _unitOfWork.Save();
@@ -134,9 +119,5 @@ public class OnlineAppointmentController : Controller
         }
 
         return View(obj);
-
-
-
     }
-
 }

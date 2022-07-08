@@ -8,7 +8,6 @@ public class AppDbContext : IdentityDbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
-
     }
 
     public DbSet<Doctor> Doctors { get; set; }
@@ -23,5 +22,4 @@ public class AppDbContext : IdentityDbContext
     public DbSet<ShoppingCart> ShoppingCarts { get; set; }
     public DbSet<OrderHeader> OrderHeaders { get; set; }
     public DbSet<OrderDetail> OrderDetails { get; set; }
-
 }

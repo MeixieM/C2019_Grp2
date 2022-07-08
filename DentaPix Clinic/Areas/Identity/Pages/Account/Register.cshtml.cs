@@ -102,29 +102,27 @@ namespace DentaPix_Clinic.Areas.Identity.Pages.Account
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
 
-
             [Required]
             public string FirstName { get; set; }
-            [Required]
 
+            [Required]
             public string LastName { get; set; }
-            [Required]
 
+            [Required]
             public string Address { get; set; }
-            [Required]
 
+            [Required]
             public string PhoneNumber { get; set; }
+
             public string? Role { get; set; }
             public int? DoctorId { get; set; }
 
-
             [ValidateNever]
             public IEnumerable<SelectListItem> RoleList { get; set; }
+
             [ValidateNever]
             public IEnumerable<SelectListItem> DoctorList { get; set; }
-
         }
-
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -170,7 +168,6 @@ namespace DentaPix_Clinic.Areas.Identity.Pages.Account
                 if (Input.Role == SD.Role_User_Doc)
                 {
                     user.DoctorId = Input.DoctorId;
-
                 }
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -187,7 +184,6 @@ namespace DentaPix_Clinic.Areas.Identity.Pages.Account
                     {
                         await _userManager.AddToRoleAsync(user, Input.Role);
                     }
-
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -207,7 +203,6 @@ namespace DentaPix_Clinic.Areas.Identity.Pages.Account
                     }
                     else
                     {
-
                         if (User.IsInRole(SD.Role_Admin))
                         {
                             TempData["success"] = "New User Created Successfully";
@@ -215,7 +210,6 @@ namespace DentaPix_Clinic.Areas.Identity.Pages.Account
                         else
                         {
                             await _signInManager.SignInAsync(user, isPersistent: false);
-
                         }
                         return LocalRedirect(returnUrl);
                     }

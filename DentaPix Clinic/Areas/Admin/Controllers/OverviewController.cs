@@ -6,7 +6,6 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
     [Area("Admin")]
     public class OverviewController : Controller
     {
-
         private readonly IUnitOfWork _unitOfWork;
 
         public OverviewController(IUnitOfWork unitOfWork)
@@ -16,28 +15,21 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-
-
             //PatientList = _unitOfWork.Patient.GetAll().Select();
-
-
 
             //OverviewVM overviewVM = new();
 
             //var PatientList = _unitOfWork.Patient.GetAll().Select(u => u.PatientId == '1');
 
-
             return View();
 
             //var patientFromDb = _unitOfWork.Patient.GetAll(u => u.PatientId == id);
 
-            //// Count how many messages the discussion has 
+            //// Count how many messages the discussion has
             //var patientCount = _unitOfWork.Entry(patientFromDb)
             //                      .Collection(d => d.Messages)
             //                      .Query()
             //                      .Count();
-
-
         }
 
         //[HttpGet]
@@ -51,4 +43,3 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
         //}
     }
 }
-

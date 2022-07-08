@@ -6,6 +6,7 @@ namespace DentaPix_Clinic.DataAccess.Repository
     public class OverviewRepository : Repository<Overview>, IOverviewRepository
     {
         private AppDbContext _db;
+
         public OverviewRepository(AppDbContext db) : base(db)
         {
             _db = db;
@@ -19,8 +20,6 @@ namespace DentaPix_Clinic.DataAccess.Repository
         public void Update(Overview obj)
         {
             _db.Overviews.Update(obj);
-
         }
-
     }
 }

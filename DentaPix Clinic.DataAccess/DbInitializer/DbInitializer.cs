@@ -7,7 +7,6 @@ namespace DentaPix_Clinic.DataAccess.DbInitializer
 {
     public class DbInitializer : IDbInitializer
     {
-
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly AppDbContext _db;
@@ -22,7 +21,6 @@ namespace DentaPix_Clinic.DataAccess.DbInitializer
             _db = db;
         }
 
-
         public void Initialize()
         {
             //migrations if they are not applied
@@ -35,7 +33,6 @@ namespace DentaPix_Clinic.DataAccess.DbInitializer
             }
             catch (Exception ex)
             {
-
             }
 
             //create roles if they are not created
@@ -56,13 +53,11 @@ namespace DentaPix_Clinic.DataAccess.DbInitializer
                     LastName = "Mercado",
                     Address = "Test 123 St. New York City",
                     PhoneNumber = "0911122333",
-
                 }, "Admin123*").GetAwaiter().GetResult();
 
                 ApplicationUser user = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "admin@dentapix.com");
 
                 _userManager.AddToRoleAsync(user, SD.Role_Admin).GetAwaiter().GetResult();
-
             }
             return;
         }

@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DentaPix_Clinic.Areas.Admin.Controllers;
+
 [Area("Admin")]
 [Authorize(Roles = SD.Role_Admin)]
-
 public class AppointmentController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -22,7 +22,6 @@ public class AppointmentController : Controller
         return View();
     }
 
-
     //GET
     public IActionResult Upsert(int? id)
     {
@@ -30,7 +29,6 @@ public class AppointmentController : Controller
 
         if (id == null || id == 0)
         {
-
             return View(appointment);
         }
         else
@@ -38,7 +36,6 @@ public class AppointmentController : Controller
             appointment = _unitOfWork.Appointment.GetFirstOrDefault(u => u.AppointmentId == id);
             return View(appointment);
         }
-
     }
 
     //POST
@@ -48,12 +45,10 @@ public class AppointmentController : Controller
     {
         if (ModelState.IsValid)
         {
-
             if (obj.AppointmentId == 0)
             {
                 _unitOfWork.Appointment.Add(obj);
                 TempData["success"] = "Appointment created successfully";
-
             }
             else
             {
@@ -68,12 +63,12 @@ public class AppointmentController : Controller
     }
 
     #region API CALLS
+
     [HttpGet]
     public IActionResult GetAll()
     {
         var appointmentList = _unitOfWork.Appointment.GetAll();
         return Json(new { data = appointmentList });
-
     }
 
     //POST
@@ -87,13 +82,10 @@ public class AppointmentController : Controller
             return Json(new { success = false, message = "Error while deleting" });
         }
 
-
         _unitOfWork.Appointment.Remove(obj);
         _unitOfWork.Save();
         return Json(new { success = true, message = "Delete Successful" });
-
     }
 
-    #endregion
+    #endregion API CALLS
 }
-

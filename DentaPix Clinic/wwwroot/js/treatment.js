@@ -20,7 +20,7 @@ function loadDataTable() {
             { "data": "name", "width": "15%" },
             { "data": "description", "width": "50%" },
 
-            {"data": "treatmentPrice", "width": "15"},
+            { "data": "treatmentPrice", "width": "15" },
 
             {
                 "data": "treatmentId",
@@ -28,8 +28,8 @@ function loadDataTable() {
                     return `
                             <div class="w-80" role="group">
 								<a href="/Admin/Treatment/Upsert?id=${data}" class="badge rounded-pill bg-primary"><i class="bi bi-pencil-square"></i></a>
-								<a onClick=Delete('/Admin/Treatment/Delete/${data}') 
-                                class="badge rounded-pill bg-danger"><i class="bi bi-trash"></i></a> 
+								<a onClick=Delete('/Admin/Treatment/Delete/${data}')
+                                class="badge rounded-pill bg-danger"><i class="bi bi-trash"></i></a>
 							</div>
                            `
                 },

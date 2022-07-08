@@ -15,8 +15,10 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
     public class OrderController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+
         [BindProperty]
         public OrderVM OrderVM { get; set; }
+
         public OrderController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -45,7 +47,7 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
             OrderVM.OrderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == OrderVM.OrderHeader.Id, includeProperties: "ApplicationUser");
             OrderVM.OrderDetail = _unitOfWork.OrderDetail.GetAll(u => u.OrderId == OrderVM.OrderHeader.Id, includeProperties: "Treatment");
 
-            //stripe settings 
+            //stripe settings
             var domain = "https://localhost:44331/";
             var options = new SessionCreateOptions
             {
@@ -61,7 +63,6 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
 
             foreach (var item in OrderVM.OrderDetail)
             {
-
                 var sessionLineItem = new SessionLineItemOptions
                 {
                     PriceData = new SessionLineItemPriceDataOptions
@@ -72,12 +73,10 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
                         {
                             Name = item.Treatment.Name
                         },
-
                     },
                     Quantity = item.Count,
                 };
                 options.LineItems.Add(sessionLineItem);
-
             }
 
             var service = new SessionService();
@@ -191,6 +190,7 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
         }
 
         #region API CALLS
+
         [HttpGet]
         public IActionResult GetAll(string status)
         {
@@ -212,22 +212,26 @@ namespace DentaPix_Clinic.Areas.Admin.Controllers
                 case "pending":
                     orderHeaders = orderHeaders.Where(u => u.PaymentStatus == SD.PaymentStatusDelayedPayment);
                     break;
+
                 case "inprocess":
                     orderHeaders = orderHeaders.Where(u => u.OrderStatus == SD.StatusInProcess);
                     break;
+
                 case "completed":
                     orderHeaders = orderHeaders.Where(u => u.OrderStatus == SD.StatusShipped);
                     break;
+
                 case "approved":
                     orderHeaders = orderHeaders.Where(u => u.OrderStatus == SD.StatusApproved);
                     break;
+
                 default:
                     break;
             }
 
-
             return Json(new { data = orderHeaders });
         }
-        #endregion
+
+        #endregion API CALLS
     }
 }

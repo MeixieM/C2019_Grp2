@@ -4,12 +4,11 @@ using System.Linq.Expressions;
 
 namespace DentaPix_Clinic.DataAccess.Repository
 {
-
     public class Repository<T> : IRepository<T> where T : class
     {
-
         private readonly AppDbContext _db;
         internal DbSet<T> dbSet;
+
         public Repository(AppDbContext db)
         {
             _db = db;
@@ -28,7 +27,6 @@ namespace DentaPix_Clinic.DataAccess.Repository
             if (filter != null)
             {
                 query = query.Where(filter);
-
             }
 
             if (includeProperties != null)
@@ -82,6 +80,5 @@ namespace DentaPix_Clinic.DataAccess.Repository
         {
             dbSet.RemoveRange(entity);
         }
-
     }
 }

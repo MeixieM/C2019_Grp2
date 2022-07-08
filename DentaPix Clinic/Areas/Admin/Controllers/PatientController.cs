@@ -6,10 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DentaPix_Clinic.Areas.Admin.Controllers;
+
 [Area("Admin")]
 [Authorize(Roles = SD.Role_Admin)]
-
-
 public class PatientController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -26,7 +25,6 @@ public class PatientController : Controller
         return View();
     }
 
-
     //GET
     public IActionResult Upsert(int? id)
     {
@@ -37,10 +35,8 @@ public class PatientController : Controller
             {
                 Text = i.FullName,
                 Value = i.DoctorId.ToString()
-
             }),
         };
-
 
         if (id == null || id == 0)
         {
@@ -55,7 +51,6 @@ public class PatientController : Controller
             return View(patientVM);
             //update patient
         }
-
     }
 
     //POST
@@ -91,7 +86,6 @@ public class PatientController : Controller
             if (obj.Patient.PatientId == 0)
             {
                 _unitOfWork.Patient.Add(obj.Patient);
-
             }
             else
             {
@@ -106,12 +100,12 @@ public class PatientController : Controller
     }
 
     #region API CALLS
+
     [HttpGet]
     public IActionResult GetAll()
     {
         var patientList = _unitOfWork.Patient.GetAll();
         return Json(new { data = patientList });
-
     }
 
     //POST
@@ -134,9 +128,7 @@ public class PatientController : Controller
         _unitOfWork.Patient.Remove(obj);
         _unitOfWork.Save();
         return Json(new { success = true, message = "Delete Successful" });
-
     }
 
-    #endregion
+    #endregion API CALLS
 }
-

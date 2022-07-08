@@ -1,20 +1,11 @@
 ﻿var dataTable;
 
 $(document).ready(function () {
-
     loadDataTable();
-
-
-
 });
 
-
-
-
 function loadDataTable() {
-
     dataTable = $('#tblData').DataTable({
-
         "ajax": {
             "url": "/Admin/Patient/GetAll"
         },
@@ -43,8 +34,8 @@ function loadDataTable() {
                     return `
                             <div class="w-80" role="group">
 								<a href="/Admin/Patient/Upsert?id=${data}" class="badge rounded-pill bg-primary"><i class="bi bi-pencil-square"></i></a>
-								<a onClick=Delete('/Admin/Patient/Delete/${data}') 
-                                class="badge rounded-pill bg-danger"><i class="bi bi-trash"></i></a> 
+								<a onClick=Delete('/Admin/Patient/Delete/${data}')
+                                class="badge rounded-pill bg-danger"><i class="bi bi-trash"></i></a>
 							</div>
                            `
                 },
@@ -73,14 +64,9 @@ function loadDataTable() {
             },
             { extend: 'colvis', postfixButtons: ['colvisRestore'] }
 
-
         ]
     });
-
 }
-
-
-
 
 function Delete(url) {
     Swal.fire({

@@ -5,7 +5,5 @@
         Paid = 1,
         PartiallyPaid,
         NotPaid
-
-
     }
 }

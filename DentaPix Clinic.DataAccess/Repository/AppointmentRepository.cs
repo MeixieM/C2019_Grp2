@@ -6,6 +6,7 @@ namespace DentaPix_Clinic.DataAccess.Repository
     public class AppointmentRepository : Repository<Appointment>, IAppointmentRepository
     {
         private AppDbContext _db;
+
         public AppointmentRepository(AppDbContext db) : base(db)
         {
             _db = db;
@@ -20,6 +21,5 @@ namespace DentaPix_Clinic.DataAccess.Repository
         {
             _db.Appointments.Update(obj);
         }
-
     }
 }
